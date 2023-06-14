@@ -7,7 +7,7 @@ const { Router } = require("express");
 // Router Instance.
 const routes = Router();
 
-routes.get("/",(req,res)=>{
+routes.use("/user",(req,res)=>{
     res.status(200).json({message:"todo ok"});
 })
 
