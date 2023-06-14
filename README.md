@@ -19,7 +19,7 @@ Y a partir de ella poder:
 
 ## Requisitos para ejecutarla localmente ✔️✔️
 1. Intala PostgreSQL
-2. Crea una BDD llamada dogs
+2. Crea una BDD llamada sommeliers
 3. Dentro de `Backend` crea una archivo .env con sus credenciales como se muestra a continuacion
 ```
 DB_USER= tu nombre de usuario de postgresql
