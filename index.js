@@ -4,7 +4,7 @@ const sequelize = require("./src/database/index");
 
 
 // Models Import.
-const User = require("./src/database/model/user.model");
+require("./src/database/model/relationships.js");
 
 // Default Port.
 const PORT = process.env.PORT || 3001;
@@ -14,7 +14,7 @@ function main() {
     // Put the Server to Listen.
     app.listen(PORT, async () => {
         // Data Syncronization.
-        await sequelize.sync({ force: false });
+        await sequelize.sync({ force: true });
         // Listening Verify.
         console.log(`server listening on http://localhost:${PORT}`);
 
