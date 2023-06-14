@@ -20,7 +20,7 @@ Y a partir de ella poder:
 ## Requisitos para ejecutarla localmente ✔️✔️
 1. Intala PostgreSQL
 2. Crea una BDD llamada dogs
-3. Dentro de `./api` crea una archivo .env con sus credenciales como se muestra a continuacion
+3. Dentro de `Backend` crea una archivo .env con sus credenciales como se muestra a continuacion
 ```
 DB_USER= tu nombre de usuario de postgresql
 DB_PASSWORD= tu contraseña de posgresql
