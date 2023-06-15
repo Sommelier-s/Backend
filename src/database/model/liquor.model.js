@@ -27,10 +27,6 @@ const Liquor = sequelize.define(
             defaultValue: "https://thumbs.dreamstime.com/b/silueta-de-licor-botella-alcohol-celebraci%C3%B3n-blanco-negro-elemento-decoraci%C3%B3n-dise%C3%B1o-men%C3%BA-barra-logotipo-s%C3%ADmbolo-fondo-173870498.jpg",
             allowNull: true,
         },
-        variety: {
-            type: DataTypes.STRING(),
-            allowNull: true,
-        },
         graduation: {
             type: DataTypes.STRING(),
         }, 
