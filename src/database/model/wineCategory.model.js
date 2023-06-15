@@ -5,8 +5,8 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../index");
 
 // Wine Category Model.
-const WineCategory = sequelize.define(
-  "wineCategory",
+const Wine_category = sequelize.define(
+  "wine_category",
   {
     id: {
         type: DataTypes.UUID,
@@ -24,4 +24,4 @@ const WineCategory = sequelize.define(
   }
 );
 
-module.exports = WineCategory;
+module.exports = Wine_category;
