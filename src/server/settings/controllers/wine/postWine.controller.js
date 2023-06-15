@@ -18,7 +18,7 @@ function validateFields({ name, description, price, stock, variety }) {
     return true;
 }
 
-const postClient = async (req, res) => {
+const postWine= async (req, res) => {
     //user ID
     const { id } = req.query;
     //Customer data
@@ -58,4 +58,4 @@ const postClient = async (req, res) => {
     }
 }
 
-module.exports = postClient;
+module.exports = postWine;

@@ -1,6 +1,6 @@
 const Wine = require('../../../../database/model/wine.model')
 
-const getWineById = async (req, res) => {
+const getWineByName = async (req, res) => {
     //wine name
     const { name } = req.query;
     try {
@@ -21,4 +21,4 @@ const getWineById = async (req, res) => {
     }
 };
 
-module.exports = getWineById;
+module.exports = getWineByName;
