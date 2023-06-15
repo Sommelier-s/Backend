@@ -1,6 +1,6 @@
 //I bring the models
-const Vendor = require("../../../db/models/Vendor.model");
-const Client = require("../../../db/models/Client.model");
+const Wine = require('../../../../database/model/wine.model');
+const User = require('../../../../database/model/user.model');
 
 //Function that checks if the id has a UUID structure.
 function esUUID(id) {
@@ -9,20 +9,20 @@ function esUUID(id) {
 }
 
 //Function that validates all the fields of body
-function validateFields({ name, last_name, dni, address, pseudo_name }) {
+function validateFields({ name, description, price, stock, variety }) {
     if (!name || name === "") return false;
-    if (!last_name || last_name === "") return false;
-    if (!dni || isNaN(dni)) return false;
-    if (!address || address === "") return false;
-    if (!pseudo_name || pseudo_name === "") return false
+    if (!description || description === "") return false;
+    if (!price || isNaN(price)) return false;
+    if (!stock || isNaN(stock)) return false;
+    if (!variety || variety === "") return false;
     return true;
 }
 
-const postClient = async (req, res) => {
-    //Vendor ID
+const postWine= async (req, res) => {
+    //user ID
     const { id } = req.query;
     //Customer data
-    const { name, last_name, dni, address, pseudo_name } = req.body;
+    const { name, description, price, stock, picture, variety } = req.body;
 
     try {
         //Valid if the id comes from the query
@@ -31,30 +31,31 @@ const postClient = async (req, res) => {
         if (id === "") return res.status(400).json({ status: 400, error: "The id field is empty" });
         if (!esUUID(id)) return res.status(409).json({ status: 409, error: "The id field has no UUID structure" });
         //Valid if the seller exists
-        const vendor = await Vendor.findByPk(id);
-        if (!vendor) return res.status(404).json({ status: 404, error: "The seller does not exist" });
+        const user = await User.findByPk(id);
+        if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
 
-        //Valid if the seller is an administrator
-        if (vendor.rol !== "administrador") return res.status(401).json({ status: 401, error: "Seller is not an administrator" });
+        //Valid if the user is an administrator
+        if (user.is_staff === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
 
-        //Valid that the Customer fields are valid.
-        if (!validateFields(req.body)) return res.status(409).json({ status: 409, error: "Customer fields are not valid" });
-        //If the client already exists, it returns an error.
-        const clientSearch = await Client.findOne({ where: { dni: dni } });
-        if (clientSearch) return res.status(400).json({ status: 400, error: "The customer already exists" });
-        //I create the customer
-        const client = await Client.create({
+        //Valid that the Product fields are valid.
+        if (!validateFields(req.body)) return res.status(409).json({ status: 409, error: "Product fields are not valid" });
+        //If the product already exists, it returns an error.
+        const productSearch = await Wine.findOne({ where: { id: id } });
+        if (productSearch) return res.status(400).json({ status: 400, error: "The product already exists" });
+        //I create the product
+        const product = await Wine.create({
             name,
-            last_name,
-            dni,
-            address,
-            pseudo_name
-        })
-        //I return the customer data created
-        res.status(201).json({ status: 201, message: "The client was successfully created", data: client });
+            description,
+            price,
+            stock,
+            variety,
+            picture
+        });
+        //I return the product data created
+        res.status(201).json({ status: 201, message: "The product was successfully created", data: product });
     } catch (error) {
         res.status(500).json({ status: 500, error: error.message });
     }
 }
 
-module.exports = postClient;
+module.exports = postWine;
