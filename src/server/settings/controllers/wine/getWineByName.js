@@ -1,14 +1,14 @@
-const wine = require('../../../../database/model/wine.model')
+const Wine = require('../../../../database/model/wine.model')
 
 const getWineById = async (req, res) => {
-    //wine id
+    //wine name
     const { name } = req.query;
     try {
         //Valid if the name comes from the query
         if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The name field is required" });
         //Valid if the name is correct
         if (name === "") return res.status(400).json({ status: 400, error: "The id field is empty" });
-        const response = await wine.findAll({
+        const response = await Wine.findAll({
             where: {
                 name: { [Op.iLike]: `${name}` },
             }
