@@ -4,27 +4,24 @@ const { DataTypes } = require("sequelize");
 // Local Dependencies.
 const sequelize = require("../index");
 
-
 // Liquor Category Model.
 const LiquorCategory = sequelize.define(
-    "liquorCategory",
-      {  
-        id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+  "liquorCategory",
+  {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        },
-        name: {
-          type: DataTypes.STRING,
-          allowNull:false
-        }
-      },
-      {
-        timestamps: false,
-      }
-)
-
+    },
+    name: {
+        type: DataTypes.STRING(),
+        unique: true, // Agregar la restricción de unicidad
+    }
+  },
+  {
+    // No pluralization.
+    freezeTableName: true,
+  }
+);
 
 module.exports = LiquorCategory;
-
-
