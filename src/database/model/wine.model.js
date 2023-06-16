@@ -13,6 +13,9 @@ const Wine = sequelize.define(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
+        user_Id:{
+            type: DataTypes.UUID
+        },
         name: {
             type: DataTypes.STRING(),
         },
