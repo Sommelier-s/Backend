@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require("../../../../database/model/user.model");
+const { User } = require("../../../../database/model/relationships");
 const router = express.Router();
 
 router.post("/create", async(req, res) => {

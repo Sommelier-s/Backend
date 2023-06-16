@@ -22,7 +22,7 @@ const controllerPutWine = async (res, req) => {
         const user = await User.findByPk(userId);
         if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
         //Valid if the user is an administrator
-        if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
+        if (user.is_Admin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
         //If the product already exists, it returns an error.
         const product = await Wine.findByPk(id);
         if (!product) return res.status(400).json({ status: 400, error: "The product does exist" });
