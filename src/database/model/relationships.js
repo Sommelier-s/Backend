@@ -19,4 +19,3 @@ module.exports = {
     Liquor_category
 }
 
-//feature/dev-Gonza (backend/relationships) creada la relaciones
