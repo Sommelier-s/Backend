@@ -1,5 +1,4 @@
-const Wine = require('../../../../database/model/wine.model');
-const User = require('../../../../database/model/user.model');
+const { Wine, User } = require('../../../../database/model/relationships');
 
 function esUUID(id) {
     const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

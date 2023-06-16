@@ -1,4 +1,4 @@
-const Wine = require('../../../../database/model/wine.model')
+const { Wine } = require('../../../../database/model/relationships')
 
 //Function that checks if the id has a UUID structure.
 function esUUID(id) {
