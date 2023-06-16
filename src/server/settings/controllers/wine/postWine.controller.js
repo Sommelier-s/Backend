@@ -1,6 +1,5 @@
 //I bring the models
-const Wine = require('../../../../database/model/wine.model');
-const User = require('../../../../database/model/user.model');
+const { Wine, User, Wine_category } = require('../../../../database/model/relationships');
 
 //Function that checks if the id has a UUID structure.
 function esUUID(id) {
@@ -18,12 +17,11 @@ function validateFields({ name, description, price, stock, variety }) {
     return true;
 }
 
-const postWine= async (req, res) => {
+const postWine = async (req, res) => {
     //user ID
     const { id } = req.query;
-    //Customer data
+    //Product data
     const { name, description, price, stock, picture, variety } = req.body;
-
     try {
         //Valid if the id comes from the query
         if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The id field is required" });
@@ -33,10 +31,8 @@ const postWine= async (req, res) => {
         //Valid if the seller exists
         const user = await User.findByPk(id);
         if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
-
         //Valid if the user is an administrator
-        if (user.is_staff === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
-
+        if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
         //Valid that the Product fields are valid.
         if (!validateFields(req.body)) return res.status(409).json({ status: 409, error: "Product fields are not valid" });
         //If the product already exists, it returns an error.
@@ -48,9 +44,11 @@ const postWine= async (req, res) => {
             description,
             price,
             stock,
-            variety,
             picture
         });
+        // Add the category to product
+        const category = await Wine_category.findOne({ where: { name: variety } });
+        product.addCategory(category);
         //I return the product data created
         res.status(201).json({ status: 201, message: "The product was successfully created", data: product });
     } catch (error) {
