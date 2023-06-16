@@ -8,10 +8,9 @@ const routes = Router();
 
 routes.use("/wine",  require('./WineRoute/wineRoute'));
 routes.use("/auth", require("./UserRoute/userRoute"));
+routes.use("/category_wine", require("./CategoriesRoutes/wineCategoryRoutes"));
+routes.use("/category_liquor", require("./CategoriesRoutes/liquorCategoryRoutes"));
 
-routes.use("/user",(req,res)=>{
-    res.status(200).json({message:"todo ok"});
-})
 
 
 module.exports = routes;
