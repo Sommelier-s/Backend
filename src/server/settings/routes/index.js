@@ -2,13 +2,16 @@
 
 // Third Party Dependencies.
 const { Router } = require("express");
-const wineRoute = require('./WineRoute/wineRoute')
-
 
 // Router Instance.
 const routes = Router();
 
-routes.use("/wine", wineRoute);
+routes.use("/wine",  require('./WineRoute/wineRoute'));
+routes.use("/auth", require("./UserRoute/userRoute"));
+
+routes.use("/user",(req,res)=>{
+    res.status(200).json({message:"todo ok"});
+})
 
 
 module.exports = routes;

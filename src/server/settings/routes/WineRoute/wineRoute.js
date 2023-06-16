@@ -8,11 +8,11 @@ const putWine = require('../../controllers/wine/putWine.controller')
 
 const router = Router();
 
-router.post('/get', postWine );
-router.get('/get', getWine );
-router.get('/get/:id', getWineById );
-router.get('/get', getWineByName );
-router.put('/get', putWine );
-router.delete('/get', deleteWine );
+router.post('/', postWine );
+router.get('/', getWine );
+router.get('/:id', getWineById );
+router.get('/name', getWineByName );
+router.put('/', putWine );
+router.delete('/', deleteWine );
 
 module.exports = router;
