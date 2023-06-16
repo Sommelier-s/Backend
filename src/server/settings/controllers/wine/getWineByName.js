@@ -1,4 +1,4 @@
-const Wine = require('../../../../database/model/wine.model')
+const { Wine, Wine_category } = require('../../../../database/model/relationships')
 
 const getWineByName = async (req, res) => {
     //wine name
@@ -11,7 +11,15 @@ const getWineByName = async (req, res) => {
         const response = await Wine.findAll({
             where: {
                 name: { [Op.iLike]: `${name}` },
-            }
+                include: {
+                    model: Wine_category,
+                    attributes: ['name'],
+                    through: {
+                        attributes: [],
+                    },
+                }
+            },
+            
         });
         //Valid if we have a response
         if (!response) return res.status(404).json({ status: 404, message: "Product not found" })
