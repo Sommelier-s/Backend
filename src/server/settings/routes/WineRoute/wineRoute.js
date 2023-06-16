@@ -14,3 +14,5 @@ router.get('/get/:id', getWineById );
 router.get('/get', getWineByName );
 router.put('/get', putWine );
 router.delete('/get', deleteWine );
+
+module.exports = router;
