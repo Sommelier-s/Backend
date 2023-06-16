@@ -6,26 +6,27 @@ function esUUID(id) {
 }
 
 const controllerPutWine = async (res, req) => {
-    const { id } = req.query;
+    const { userId } = req.query;
+    const { id } = req.params;
     const info = req.body;
 
     try {
-        //Valid if the id comes from the query
+        //Valid if the user id comes from the query
         if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The id field is required" });
         //Valid if the id is correct
-        if (id === "") return res.status(400).json({ status: 400, error: "The id field is empty" });
-        if (!esUUID(id)) return res.status(409).json({ status: 409, error: "The id field has no UUID structure" });
+        if (id === "") return res.status(400).json({ status: 400, error: "The product id field is empty" });
+        if (userId === "") return res.status(400).json({ status: 400, error: "The user id field is empty" });
+        if (!esUUID(id)) return res.status(409).json({ status: 409, error: "The product id field has no UUID structure" });
+        if (!esUUID(userId)) return res.status(409).json({ status: 409, error: "The user id field has no UUID structure" });
         //Valid if the user exists
-        const user = await User.findByPk(id);
+        const user = await User.findByPk(userId);
         if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
-
         //Valid if the user is an administrator
-        if (user.is_staff === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
-
+        if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
         //If the product already exists, it returns an error.
         const product = await Wine.findByPk(id);
         if (!product) return res.status(400).json({ status: 400, error: "The product does exist" });
-        //I create the product
+        //I set the product
         product.set({
             name: info.name,
             description: info.description,
@@ -34,7 +35,7 @@ const controllerPutWine = async (res, req) => {
             picture: info.pcture,
         });
         await product.save();
-        //I return the product data created
+        //I return the product data modified
         res.status(201).json({ status: 201, message: "The product was successfully modified", data: product });
     } catch (error) {
         res.status(500).json({ status: 500, message: error, message })
