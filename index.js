@@ -4,7 +4,7 @@ const sequelize = require("./src/database/index");
 
 
 // Models Import.
-require("./src/database/model/relationships.js");
+const User = require("./src/database/model/user.model");
 
 // Default Port.
 const PORT = process.env.PORT || 3001;
