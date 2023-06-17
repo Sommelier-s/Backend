@@ -1,5 +1,5 @@
 const express = require("express");
-const { User } = require("../../../../database/model/relationships");
+const User = require("../../../../database/model/user.model");
 const router = express.Router();
 
 router.post("/create", async(req, res) => {
@@ -35,11 +35,12 @@ router.post("/create", async(req, res) => {
         last_name,
         email,
         password,
-        date_birth
+        date_birth,
+        is_Admin: true
     })
 
    await user.save()
-    res.status(201).json({status: 201, message:"Usuario creado correctamente", data:user})
+    res.json({message:"Usuario creado correctamente", user})
 
 })
 
@@ -51,7 +52,7 @@ router.get("/user", async(req, res) => {
         return res.status(400).json({ message: "No hay usuarios" });
     }
 
-    res.status(200).json({status: 200, message:"Usuarios encontrados", data:users})
+    res.json({message:"Usuarios encontrados", users})
 })
 
 
