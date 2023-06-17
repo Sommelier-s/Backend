@@ -19,10 +19,6 @@ const User = sequelize.define(
         last_name: {
             type: DataTypes.STRING(),
         },
-        user_name: {
-            type: DataTypes.STRING(),
-            unique: true,
-        },
         profile_picture: {
             type: DataTypes.STRING,
             defaultValue: "https://ionicframework.com/docs/img/demos/avatar.svg",
@@ -43,20 +39,14 @@ const User = sequelize.define(
             type: DataTypes.DATEONLY,
             allowNull: true,
         },
-        is_tutor: {
+        is_Admin: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
             allowNull: true,
         },
-        is_staff: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
-            allowNull: true,
-        },
-        is_active: {
+        isActive: {
             type: DataTypes.BOOLEAN,
             defaultValue: true,
-            allowNull: true,
         },
         about_me: {
             type: DataTypes.TEXT,
