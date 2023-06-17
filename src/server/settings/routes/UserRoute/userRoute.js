@@ -39,7 +39,7 @@ router.post("/create", async(req, res) => {
     })
 
    await user.save()
-    res.json({message:"Usuario creado correctamente", user})
+    res.status(201).json({status: 201, message:"Usuario creado correctamente", data:user})
 
 })
 
@@ -51,7 +51,7 @@ router.get("/user", async(req, res) => {
         return res.status(400).json({ message: "No hay usuarios" });
     }
 
-    res.json({message:"Usuarios encontrados", users})
+    res.status(200).json({status: 200, message:"Usuarios encontrados", data:users})
 })
 
 
