@@ -1,7 +1,5 @@
 const { Router } = require('express');
-const deleteLiquorCategory = require('../../controllers/categoryLiquor/deleteLiquorCategory.controller')
-const getLiquorCategories = require('../../controllers/categoryLiquor/getLiquorCategories.controller')
-const postLiquorCategories = require('../../controllers/categoryLiquor/postLiquorCategory.controller')
+const { deleteLiquorCategory, getLiquorCategories, postLiquorCategories } = require('../../controllers/relationship')
 
 const router = Router();
 

@@ -23,7 +23,7 @@ const deleteWineCategory = async (req, res) => {
         const user = await User.findByPk(userId);
         if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
         //Valid if the user is an administrator
-        if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
+        if (user.is_Admin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
         const response = await Wine_category.findByPk(id);
         //Valid if we have a response
         if (!response) return res.status(404).json({ status: 404, message: "response not found" })

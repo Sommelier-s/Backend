@@ -10,10 +10,6 @@ const postWineCategories = async (req, res) => {
   try {
     const { id } = req.query;
     const { name } = req.body;
-    // console.log(req.body);
-    // console.log(name);
-    // console.log(req.body);
-    // console.log(name);
      //Valid if the id comes from the query
      if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The id field is required" });
      //Valid if the id is correct
@@ -23,7 +19,7 @@ const postWineCategories = async (req, res) => {
      const user = await User.findByPk(id);
      if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
      //Valid if the user is an administrator
-     if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
+     if (user.is_Admin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
     
     if (!name) {
       return res.status(404).send("The name field is empty!");
