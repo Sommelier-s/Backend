@@ -23,11 +23,11 @@ const deleteWine = async (req, res) => {
         const user = await User.findByPk(userId);
         if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
         //Valid if the user is an administrator
-        if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
+        if (user.is_Admin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
         const product = await Wine.findByPk(id);
         //Valid if we have a response
         if (!product) return res.status(404).json({ status: 404, message: "Product not found" })
-        product.set({ isActive: false });
+        product.setDataValue('isActive', false);
         await product.save();
         res.status(200).json({ status: 200, message: "The product was been deleted", data: product })
     } catch (error) {

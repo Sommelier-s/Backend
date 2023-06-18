@@ -4,6 +4,11 @@ const Liquor = require("./liquor.model");
 const Wine_category = require('./wineCategory.model');
 const Liquor_category = require('./liquorCategory.model');
 
+Wine_category.hasMany(Wine);
+Wine.belongsTo(Wine_category);
+Liquor_category.hasMany(Liquor);
+Liquor.belongsTo(Liquor_category);
+
 module.exports = {
     User,
     Wine,
@@ -11,3 +16,4 @@ module.exports = {
     Wine_category,
     Liquor_category,
 }
+

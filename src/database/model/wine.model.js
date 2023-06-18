@@ -13,11 +13,15 @@ const Wine = sequelize.define(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
+        user_id:{
+            type: DataTypes.UUID
+        },
         name: {
             type: DataTypes.STRING(),
         },
         description: {
-            type: DataTypes.TEXT,   
+            type: DataTypes.TEXT,
+            allowNull: true  
         },
         price: {
             type: DataTypes.FLOAT(),

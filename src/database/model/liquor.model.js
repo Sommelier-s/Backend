@@ -13,6 +13,9 @@ const Liquor = sequelize.define(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
+        user_id:{
+            type: DataTypes.UUID
+        },
         name: {
             type: DataTypes.STRING(),
         },
