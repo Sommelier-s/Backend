@@ -44,7 +44,7 @@ const postWine = async (req, res) => {
         
         //I create the product
         const product = await Wine.create({
-            userId: id,
+            user_id: id,
             name,
             description,
             price,

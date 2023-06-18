@@ -1,4 +1,5 @@
 const { Wine, Wine_category } = require('../../../../database/model/relationships')
+const { Op } = require('sequelize');
 
 const getWineByName = async (req, res) => {
     //wine name
@@ -11,10 +12,9 @@ const getWineByName = async (req, res) => {
         if (name === "") return res.status(400).json({ status: 400, error: "The id field is empty" });
         const response = await Wine.findAll({
             where: {
-                name: {
-                    [Op.like]: `${name}`
-                }
-            }
+                name: { [Op.like]: `%${name}%` }
+            },
+            include: Wine_category
         });
         //Valid if we have a response
         if (!response) return res.status(404).json({ status: 404, message: "Product not found" })
