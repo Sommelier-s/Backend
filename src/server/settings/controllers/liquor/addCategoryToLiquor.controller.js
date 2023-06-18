@@ -22,7 +22,7 @@ const addCategoryToLiquor = async (req, res) => {
         if (!product) res.status(404).json({ status: 404, error: "The product wasn't found" }); 
         const category = await Liquor_category.findByPk(categoryId);
         if (!category) res.status(404).json({ status: 404, error: "The category wasn't found" });
-        product.set({graduation: category});
+        product.setLiquor_category(category);
         product.save();
         res.status(200).json({status: 200, message: "The catagory has been added successfully", data: product});
     } catch (error) {
