@@ -31,7 +31,7 @@ const postLiquor= async (req, res) => {
         const user = await User.findByPk(id);
         if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
         //Valid if the user is an administrator
-        if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
+        if (user.is_Admin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
         //Valid that the Product fields are valid.
         if (!validateFields(req.body)) return res.status(409).json({ status: 409, error: "Product fields are not valid!" });
         //If the product already exists, it returns an error.
