@@ -8,7 +8,7 @@ function esUUID(id) {
 const controllerPutWine = async (req, res) => {
     const { userId } = req.query;
     const { id } = req.params;
-    const { name, description, price, stock, picture} = req.body;
+    const { name, description, price, stock, picture, isActive} = req.body;
 
     try {
         //Valid if the user id comes from the query
@@ -33,6 +33,7 @@ const controllerPutWine = async (req, res) => {
             price,
             stock,
             picture,
+            isActive
         });
 
         //I return the product data modified
