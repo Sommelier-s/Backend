@@ -13,6 +13,6 @@ router.get('/', getWine );
 router.get('/:id', getWineById );
 router.get('/name', getWineByName );
 router.put('/:id', putWine );
-router.delete('/', deleteWine );
+router.delete('/:id', deleteWine );
 
 module.exports = router;
