@@ -12,7 +12,7 @@ router.post('/', postWine );
 router.get('/', getWine );
 router.get('/:id', getWineById );
 router.get('/name', getWineByName );
-router.put('/', putWine );
+router.put('/:id', putWine );
 router.delete('/', deleteWine );
 
 module.exports = router;

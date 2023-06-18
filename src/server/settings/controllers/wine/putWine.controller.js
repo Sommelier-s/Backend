@@ -5,10 +5,10 @@ function esUUID(id) {
     return uuidPattern.test(id);
 }
 
-const controllerPutWine = async (res, req) => {
+const controllerPutWine = async (req, res) => {
     const { userId } = req.query;
     const { id } = req.params;
-    const info = req.body;
+    const { name, description, price, stock, picture} = req.body;
 
     try {
         //Valid if the user id comes from the query
@@ -27,14 +27,14 @@ const controllerPutWine = async (res, req) => {
         const product = await Wine.findByPk(id);
         if (!product) return res.status(400).json({ status: 400, error: "The product does exist" });
         //I set the product
-        product.set({
-            name: info.name,
-            description: info.description,
-            price: info.price,
-            stock: info.stock,
-            picture: info.pcture,
+        product.update({
+            name,
+            description,
+            price,
+            stock,
+            picture,
         });
-        await product.save();
+
         //I return the product data modified
         res.status(201).json({ status: 201, message: "The product was successfully modified", data: product });
     } catch (error) {
