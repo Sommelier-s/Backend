@@ -9,7 +9,6 @@ function esUUID(id) {
 
 //Function that validates all the fields of body
 function validateFields({ name, description, price, stock, wineCategoryId }) {
-    console.log("name", name, "description", description, "price", price, "stock", stock, "wineCategoryId", wineCategoryId);
     if (!name || name === "") return false;
     if (!description || description === "") return false;
     if (!price || isNaN(price)) return false;

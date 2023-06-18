@@ -13,7 +13,7 @@ const Wine = sequelize.define(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        user_Id:{
+        user_id:{
             type: DataTypes.UUID
         },
         name: {

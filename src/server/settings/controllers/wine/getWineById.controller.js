@@ -10,7 +10,6 @@ const getWineById = async (req, res, next) => {
     //wine id
     //b3a5e93e-4a0b-4815-8a64-694e6528d84a
     const { id } = req.params;
-    console.log(id);
     if (esUUID(id)) {
         try {
             //Valid if the id is correct
