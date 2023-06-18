@@ -5,10 +5,10 @@ function esUUID(id) {
     return uuidPattern.test(id);
 }
 
-const controllerPutWine = async (res, req) => {
+const controllerPutWine = async (req, res) => {
     const { userId } = req.query;
     const { id } = req.params;
-    const info = req.body;
+    const { name, description, price, stock, picture, isActive} = req.body;
 
     try {
         //Valid if the user id comes from the query
@@ -22,19 +22,20 @@ const controllerPutWine = async (res, req) => {
         const user = await User.findByPk(userId);
         if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
         //Valid if the user is an administrator
-        if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
+        if (user.is_Admin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
         //If the product already exists, it returns an error.
         const product = await Wine.findByPk(id);
         if (!product) return res.status(400).json({ status: 400, error: "The product does exist" });
         //I set the product
-        product.set({
-            name: info.name,
-            description: info.description,
-            price: info.price,
-            stock: info.stock,
-            picture: info.pcture,
+        product.update({
+            name,
+            description,
+            price,
+            stock,
+            picture,
+            isActive
         });
-        await product.save();
+
         //I return the product data modified
         res.status(201).json({ status: 201, message: "The product was successfully modified", data: product });
     } catch (error) {

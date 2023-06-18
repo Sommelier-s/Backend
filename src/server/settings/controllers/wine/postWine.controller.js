@@ -8,12 +8,12 @@ function esUUID(id) {
 }
 
 //Function that validates all the fields of body
-function validateFields({ name, description, price, stock, variety }) {
+function validateFields({ name, description, price, stock, wineCategoryId }) {
     if (!name || name === "") return false;
     if (!description || description === "") return false;
     if (!price || isNaN(price)) return false;
     if (!stock || isNaN(stock)) return false;
-    if (!variety || variety === "") return false;
+    if (!wineCategoryId || wineCategoryId === "") return false;
     return true;
 }
 
@@ -21,7 +21,7 @@ const postWine = async (req, res) => {
     //user ID
     const { id } = req.query;
     //Product data
-    const { name, description, price, stock, picture, variety } = req.body;
+    const { name, description, price, stock, picture, wineCategoryId } = req.body;
     try {
         //Valid if the id comes from the query
         if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The id field is required" });
@@ -32,23 +32,27 @@ const postWine = async (req, res) => {
         const user = await User.findByPk(id);
         if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
         //Valid if the user is an administrator
-        if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
+        if (user.is_Admin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
         //Valid that the Product fields are valid.
         if (!validateFields(req.body)) return res.status(409).json({ status: 409, error: "Product fields are not valid" });
         //If the product already exists, it returns an error.
         const productSearch = await Wine.findOne({ where: { id: id } });
         if (productSearch) return res.status(400).json({ status: 400, error: "The product already exists" });
+        //Valid if the wine category exist
+        const category = await Wine_category.findByPk(wineCategoryId);
+        if(!category) return res.status(404).json({ status:404, message: "The category does exist"});
+        
         //I create the product
         const product = await Wine.create({
+            user_id: id,
             name,
             description,
             price,
             stock,
-            picture
+            picture,
         });
         // Add the category to product
-        const category = await Wine_category.findOne({ where: { name: variety } });
-        product.addCategory(category);
+        product.setWine_category(wineCategoryId);
         //I return the product data created
         res.status(201).json({ status: 201, message: "The product was successfully created", data: product });
     } catch (error) {

@@ -6,27 +6,22 @@ function esUUID(id) {
     return uuidPattern.test(id);
 }
 
-const getWineById = async (req, res) => {
+const getWineById = async (req, res, next) => {
     //wine id
+    //b3a5e93e-4a0b-4815-8a64-694e6528d84a
     const { id } = req.params;
-    try {
-        //Valid if the id is correct
-        if (id === "") return res.status(400).json({ status: 400, error: "The id field is empty" });
-        if (!esUUID(id)) return res.status(409).json({ status: 409, error: "The id field has no UUID structure" });
-        const response = await Wine.findByPk(id, {
-            include: {
-                model: Wine_category,
-                attributes: ['name'],
-                through: {
-                    attributes: [],
-                },
-            }
-        });
-        //Valid if we have a response
-        if (!response) return res.status(404).json({ status: 404, message: "Product not found" })
-        res.status(200).json({ status: 200, message: "The product was found", data: response })
-    } catch (error) {
-        return res.status(500).json({ status: 500, message: "Internal server error" })
+    if (esUUID(id)) {
+        try {
+            //Valid if the id is correct
+            const response = await Wine.findByPk(id, {include: Wine_category});
+            //Valid if we have a response
+            if (!response) return res.status(404).json({ status: 404, message: "Product not found" })
+            res.status(200).json({ status: 200, message: "The product was found", data: response })
+        } catch (error) {
+            return res.status(500).json({ status: 500, message: "Internal server error" })
+        }
+    } else {
+        next();
     }
 };
 
