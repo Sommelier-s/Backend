@@ -3,6 +3,7 @@ const { Wine, Wine_category } = require('../../../../database/model/relationship
 const getWineByName = async (req, res) => {
     //wine name
     const { name } = req.query;
+    console.log(name);
     try {
         //Valid if the name comes from the query
         if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The name field is required" });
@@ -10,16 +11,10 @@ const getWineByName = async (req, res) => {
         if (name === "") return res.status(400).json({ status: 400, error: "The id field is empty" });
         const response = await Wine.findAll({
             where: {
-                name: { [Op.iLike]: `${name}` },
-                include: {
-                    model: Wine_category,
-                    attributes: ['name'],
-                    through: {
-                        attributes: [],
-                    },
+                name: {
+                    [Op.like]: `${name}`
                 }
-            },
-            
+            }
         });
         //Valid if we have a response
         if (!response) return res.status(404).json({ status: 404, message: "Product not found" })

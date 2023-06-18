@@ -20,7 +20,8 @@ const Wine = sequelize.define(
             type: DataTypes.STRING(),
         },
         description: {
-            type: DataTypes.TEXT,   
+            type: DataTypes.TEXT,
+            allowNull: true  
         },
         price: {
             type: DataTypes.FLOAT(),

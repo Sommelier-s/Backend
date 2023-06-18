@@ -7,7 +7,7 @@ const Liquor_category = require('./liquorCategory.model');
 
 Wine_category.hasMany(Wine);
 Wine.belongsTo(Wine_category);
-Liquor_category.hasMany(Wine);
+Liquor_category.hasMany(Liquor);
 Liquor.belongsTo(Liquor_category);
 
 
