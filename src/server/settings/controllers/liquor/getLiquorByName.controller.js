@@ -1,5 +1,5 @@
 const { Liquor, Liquor_category } = require('../../../../database/model/relationships')
-const { Op } = require("sequelize");
+
 
 const getLiquorByName = async (req, res) => {
     //wine name

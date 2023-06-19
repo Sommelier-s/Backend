@@ -5,10 +5,13 @@ function esUUID(id) {
     return uuidPattern.test(id);
 }
 
-const PutLiquor = async (res, req) => {
-    const { userId } = req.query;
+const PutLiquor = async (req, res) => {
     const { id } = req.params;
-    const { name,description, price, stock, picture, isActive } = req.body;
+
+    const { userId } = req.query;
+
+    console.log(userId);
+    const { name, description, price, stock, picture, graduation, isActive } = req.body;
 
     try {
         //Valid if the user id comes from the query
@@ -25,9 +28,10 @@ const PutLiquor = async (res, req) => {
         if (user.isAdmin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
         //If the product already exists, it returns an error.
         const allLiquor = await Liquor.findAll();
-        const products = allLiquor.filter((liquor)=> liquor.name.toLowerCase() === name.toLowerCase());
+        const products = allLiquor.filter((liquor) => liquor.name.toLowerCase() === name.toLowerCase());
+
         if (products.length !== 0) return res.status(400).json({ status: 400, error: "One product already has that name" });
-        
+
         const product = await Liquor.findByPk(id);
         if (!product) return res.status(400).json({ status: 400, error: "The product does exist" });
         //I set the product
@@ -37,6 +41,7 @@ const PutLiquor = async (res, req) => {
             price,
             stock,
             picture,
+            graduation,
             isActive,
         });
         await product.save();
