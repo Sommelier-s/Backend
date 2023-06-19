@@ -1,5 +1,4 @@
-const Liquor = require("../../../../database/model/liquor.model.js");
-const User = require('../../../../database/model/user.model');
+const { Liquor, User, Liquor_category } = require('../../../../database/model/relationships');
 //Function that checks if the id has a UUID structure.
 //Function that checks if the id has a UUID structure.
 function esUUID(id) {
@@ -13,33 +12,50 @@ function validateFields({ name, description, price, stock, variety }) {
     if (!description || description === "") return false;
     if (!price || isNaN(price)) return false;
     if (!stock || isNaN(stock)) return false;
-    if (!variety || variety === "") return false;
+    if (!liquorCategoryId || liquorCategoryId === "" || !esUUID(liquorCategoryId)) return false;
     return true;
 }
 
 const postLiquor= async (req, res) => {
+    // user id
     const { id } = req.query;
-    const { name, description, price, stock, picture, variety } = req.body;
+    // product data
+    const { name, description, price, stock, picture, liquorCategoryId } = req.body;
 
     try {
         //Valid if the id comes from the query
         if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The id field is required!" });
+        
         //Valid if the id is correct
         if (id === "") return res.status(400).json({ status: 400, error: "The id field is empty!" });
         if (!esUUID(id)) return res.status(409).json({ status: 409, error: "The id field has no UUID structure!" });
+        
+        //Valid if the seller exists
+        const user = await User.findByPk(id);
+        if (!user) return res.status(404).json({ status: 404, error: "The user does not exist" });
+        
+        //Valid if the user is an administrator
+        if (user.is_Admin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
+        
         //Valid that the Product fields are valid.
         if (!validateFields(req.body)) return res.status(409).json({ status: 409, error: "Product fields are not valid!" });
+        
         //If the product already exists, it returns an error.
-        const findProduct = await Liquor.findByPk(id);
+        const findProduct = await Liquor.findOne({where:{name: name}});
         if (findProduct) return res.status(400).json({ status: 400, error: "The product already exists!" });
+        
+        //Valid if the wine category exist
+        const category = await Liquor_category.findByPk(liquorCategoryId);
+        if (!category) return res.status(400).json({ status: 400, error: "The category does not exist" });
+
         //I create the product
         const product = await Liquor.create({
             name,
             description,
             price,
             stock,
-            variety,
             picture,
+            Liquor_categoryId: liquorCategoryId,
             isActive: true,
         });
         //I return the product data created

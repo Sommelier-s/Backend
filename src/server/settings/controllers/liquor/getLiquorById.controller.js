@@ -1,4 +1,4 @@
-const Liquor = require("../../../../database/model/liquor.model.js");
+const { Liquor, Liquor_category } = require('../../../../database/model/relationships')
 
 //Function that checks if the id has a UUID structure.
 function esUUID(id) {
@@ -7,18 +7,21 @@ function esUUID(id) {
 }
 
 const getLiquorById = async (req, res) => {
+    // Liquor ID
     const { id } = req.query;
-    try {
-        //Valid if the id is correct
-        if (id === "") return res.status(400).json({ status: 400, error: "The id field is empty" });
-        if (!esUUID(id)) return res.status(409).json({ status: 409, error: "The id field has no UUID structure" });
-        //validate if the liquor has been found
-        const liquor = await Liquor.findByPk(id);
-        if (!liquor) return res.status(404).json({status: 404, error: "Product not found!"})
-        //send the liquor
-        res.status(202).json({status: 202, message: "The product was found", data: liquor})
-    } catch (error) {
-        res.status(500).json({status: 500, error: error.message});
+    
+    if (esUUID(id)) {
+        try {
+            //Valid if the id is correct
+            const response = await Liquor.findByPk(id, {include: Liquor_category});
+            //Valid if we have a response
+            if (!response) return res.status(404).json({ status: 404, message: "Product not found" })
+            res.status(200).json({ status: 200, message: "The product was found", data: response })
+        } catch (error) {
+            return res.status(500).json({ status: 500, message: "Internal server error" })
+        }
+    } else {
+        next();
     }
 }
 
