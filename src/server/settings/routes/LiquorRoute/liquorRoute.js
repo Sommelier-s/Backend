@@ -5,7 +5,6 @@ const getLiquorById = require("../../controllers/liquor/getLiquorById.controller
 const getLiquorByName = require("../../controllers/liquor/getLiquorByName.controller.js");
 const postLiquor = require("../../controllers/liquor/postLiquor.controller.js");
 const putLiquor = require("../../controllers/liquor/putLiquor.controller.js");
-//const addCategoryToLiquor = require("../../controllers/liquor/addCategoryToLiquor.controller.js");
 
 const router = Router();
 

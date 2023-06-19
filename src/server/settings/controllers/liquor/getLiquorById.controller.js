@@ -6,9 +6,9 @@ function esUUID(id) {
     return uuidPattern.test(id);
 }
 
-const getLiquorById = async (req, res) => {
+const getLiquorById = async (req, res,next) => {
     // Liquor ID
-    const { id } = req.query;
+    const { id } = req.params;
     
     if (esUUID(id)) {
         try {
