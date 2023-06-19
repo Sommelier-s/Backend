@@ -6,7 +6,6 @@ const getLiquorByName = require("../../controllers/liquor/getLiquorByName.contro
 const postLiquor = require("../../controllers/liquor/postLiquor.controller.js");
 const putLiquor = require("../../controllers/liquor/putLiquor.controller.js");
 
-
 const router = Router();
 
 
