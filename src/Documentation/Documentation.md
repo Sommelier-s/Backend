@@ -34,12 +34,22 @@
 - data: (ejemplo)
 
         {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            first_name: Pablo,
-            last_name: Perez,
-            email: pabloperez@gmail.com,
-            password: pablo123perez,
-            date_birth: 23/12/2000
+            id: b5be230d-3640-46af-8010-bc2c01c23744
+            profile_picture: "https://ionicframework.com/docs/img/demos/avatar.svg",
+            is_Admin: true,
+            isActive: true,
+            about_me: "Your description here...",
+            createGoogle: false,
+            accountConfirmed: false,
+            first_name: "Gonza",
+            last_name: "Suarez",
+            email: "gonza@gmail.com",
+            password: "Gonza1234",
+            date_birth: "1999-12-03",
+            updatedAt: "2023-06-19T14:16:34.222Z",
+            createdAt: "2023-06-19T14:16:34.222Z",
+            token: null,
+            customer_id: null
         }
 
 ##### GET ( /user ) (allUser)
@@ -60,27 +70,60 @@
 - data: (ejemplo)
 
         [
-        {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b, first_name: Pablo,
-            last_name: Perez,
-            email: pabloperez@gmail.com,
-            password: pablo123perez,
-            date_birth: 23/12/2001
-        },
-        {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b, first_name: Pablo,
-            last_name: Perez,
-            email: pabloperez@gmail.com,
-            password: pablo123perez,
-            date_birth: 23/12/2002
-        },
-        {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b, first_name: Pablo,
-            last_name: Perez,
-            email: pabloperez@gmail.com,
-            password: pablo123perez,
-            date_birth: 23/12/2003
-        }
+          {
+              id: b5be230d-3640-46af-8010-bc2c01c23744
+              profile_picture: "https://ionicframework.com/docs/img/demos/avatar.svg",
+              is_Admin: true,
+              isActive: true,
+              about_me: "Your description here...",
+              createGoogle: false,
+              accountConfirmed: false,
+              first_name: "Gonza",
+              last_name: "Suarez",
+              email: "gonza@gmail.com",
+              password: "Gonza1234",
+              date_birth: "1999-12-03",
+              updatedAt: "2023-06-19T14:16:34.222Z",
+              createdAt: "2023-06-19T14:16:34.222Z",
+              token: null,
+              customer_id: null
+          },
+          {
+              id: b5be230d-3640-46af-8010-bc2c01c23744
+              profile_picture: "https://ionicframework.com/docs/img/demos/avatar.svg",
+              is_Admin: true,
+              isActive: true,
+              about_me: "Your description here...",
+              createGoogle: false,
+              accountConfirmed: false,
+              first_name: "Gonza",
+              last_name: "Suarez",
+              email: "gonza@gmail.com",
+              password: "Gonza1234",
+              date_birth: "1999-12-03",
+              updatedAt: "2023-06-19T14:16:34.222Z",
+              createdAt: "2023-06-19T14:16:34.222Z",
+              token: null,
+              customer_id: null
+          }
+          {
+              id: b5be230d-3640-46af-8010-bc2c01c23744
+              profile_picture: "https://ionicframework.com/docs/img/demos/avatar.svg",
+              is_Admin: true,
+              isActive: true,
+              about_me: "Your description here...",
+              createGoogle: false,
+              accountConfirmed: false,
+              first_name: "Gonza",
+              last_name: "Suarez",
+              email: "gonza@gmail.com",
+              password: "Gonza1234",
+              date_birth: "1999-12-03",
+              updatedAt: "2023-06-19T14:16:34.222Z",
+              createdAt: "2023-06-19T14:16:34.222Z",
+              token: null,
+              customer_id: null
+          }
         ]
 
 ---
@@ -101,7 +144,7 @@
   - price (float)
   - stock (int)
   - picture (string)
-  - variety (string)
+  - wineCategoryId (UUID)
 
 ##### Response:
 
@@ -110,12 +153,16 @@
 - data: (ejemplo)
 
         {
-        name: Viña de Balbo,
-        description: Es un vino de alta calidad,
-        price: 45,
-        stock: 6,
-        picture: https://jumboargentina.vtexassets.com/arquivos/ids/624748/Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.jpg?v=637510296796370000,
-        variety: extensa
+          id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+          isActive: true,
+          name: "Vino Toro viejo 1l",
+          description: "Un vino de alta calidad",
+          price: 50,
+          stock: 20,
+          picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+          Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+          updatedAt: "2023-06-19T17:53:57.176Z",
+          createdAt: "2023-06-19T17:53:57.176Z",
         }
 
 ##### GET ( / ) (allWine)
@@ -136,33 +183,42 @@
 - data: (ejemplo)
 
         [
-        {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viña de Balbo,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/arquivos/ids/624748 Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.jpg?v=637510296796370000,
-            variety: extensa
-        },
-        {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viña de Balbo,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/arquivos/ids/624748 Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.jpg?v=637510296796370000,
-            variety: extensa
-        },
-        {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viña de Balbo,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/  arquivos/ids/624748   Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.  jpg?v=637510296796370000,
-            variety: extensa
-        }
+          {
+            id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+            isActive: true,
+            name: "Vino Toro viejo 1l",
+            description: "Un vino de alta calidad",
+            price: 50,
+            stock: 20,
+            picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+            Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+            updatedAt: "2023-06-19T17:53:57.176Z",
+            createdAt: "2023-06-19T17:53:57.176Z",
+          },
+          {
+            id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+            isActive: true,
+            name: "Vino Toro viejo 1l",
+            description: "Un vino de alta calidad",
+            price: 50,
+            stock: 20,
+            picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+            Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+            updatedAt: "2023-06-19T17:53:57.176Z",
+            createdAt: "2023-06-19T17:53:57.176Z",
+          }
+          {
+            id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+            isActive: true,
+            name: "Vino Toro viejo 1l",
+            description: "Un vino de alta calidad",
+            price: 50,
+            stock: 20,
+            picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+            Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+            updatedAt: "2023-06-19T17:53:57.176Z",
+            createdAt: "2023-06-19T17:53:57.176Z",
+          }
         ]
 
 ##### GET ( /:id ) (wineById)
@@ -183,13 +239,16 @@
 - data: (ejemplo)
 
         {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viña de Balbo,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/arquivos/ids/624748 Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.jpg?v=637510296796370000,
-            variety: extensa
+            id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+            isActive: true,
+            name: "Vino Toro viejo 1l",
+            description: "Un vino de alta calidad",
+            price: 50,
+            stock: 20,
+            picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+            Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+            updatedAt: "2023-06-19T17:53:57.176Z",
+            createdAt: "2023-06-19T17:53:57.176Z",
         }
 
 ##### GET ( /name ) (wineByName)
@@ -211,35 +270,44 @@
 
         [
         {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viña de Balbo,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/arquivos/ids/624748 Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.jpg?v=637510296796370000,
-            variety: extensa
-        },
-        {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viñas de Balbo,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/arquivos/ids/624748 Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.jpg?v=637510296796370000,
-            variety: extensa
-        },
-        {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viña de Balbos Argentina,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/  arquivos/ids/624748   Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.  jpg?v=637510296796370000,
-            variety: extensa
-        }
+            id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+            isActive: true,
+            name: "Vino Toro viejo 1l",
+            description: "Un vino de alta calidad",
+            price: 50,
+            stock: 20,
+            picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+            Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+            updatedAt: "2023-06-19T17:53:57.176Z",
+            createdAt: "2023-06-19T17:53:57.176Z",
+          },
+          {
+            id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+            isActive: true,
+            name: "Vino Toro viejo 75ml",
+            description: "Un vino de alta calidad",
+            price: 50,
+            stock: 20,
+            picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+            Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+            updatedAt: "2023-06-19T17:53:57.176Z",
+            createdAt: "2023-06-19T17:53:57.176Z",
+          },
+          {
+            id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+            isActive: true,
+            name: "Vino Toro Nuevo 1l",
+            description: "Un vino de alta calidad",
+            price: 50,
+            stock: 20,
+            picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+            Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+            updatedAt: "2023-06-19T17:53:57.176Z",
+            createdAt: "2023-06-19T17:53:57.176Z",
+          }
         ]
 
-##### PUT ( / )
+##### PUT ( /:id )
 
 ##### Request:
 
@@ -261,15 +329,19 @@
 - data: (ejemplo)
 
         {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viña de Balbo,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/arquivos/ids/624748/Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.jpg?v=637510296796370000
-        }
+            id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+            isActive: falso,
+            name: "Vino Miguel Nuevo 1l",
+            description: "Un vino de alta calidad",
+            price: 50,
+            stock: 20,
+            picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+            Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+            updatedAt: "2023-06-19T17:53:57.176Z",
+            createdAt: "2023-06-19T17:53:57.176Z",
+          }
 
-##### DELETE ( / )
+##### DELETE ( /:id )
 
 ##### Request:
 
@@ -287,13 +359,17 @@
 - data: (ejemplo)
 
         {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viña de Balbo,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/arquivos/ids/624748/Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.jpg?v=637510296796370000
-        }
+            id: "8b79968e-b110-48d1-8497-5305fe8a65bf",
+            isActive: true,
+            name: "Vino Toro Nuevo 1l",
+            description: "Un vino de alta calidad",
+            price: 50,
+            stock: 20,
+            picture: "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3062960_f.jpg",
+            Wine_categoryId: "f43effa4-872b-4a6a-8ac4-e0f117d4c6c9",
+            updatedAt: "2023-06-19T17:53:57.176Z",
+            createdAt: "2023-06-19T17:53:57.176Z",
+          }
 
 ---
 
@@ -313,7 +389,8 @@
   - price (float)
   - stock (int)
   - picture (string)
-  - variety (string)
+  - graduation (int)
+  - liquorCategoryId (UUID)
 
 ##### Response:
 
@@ -322,13 +399,17 @@
 - data: (ejemplo)
 
         {
-          id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-          name: Red Laber,
-          description: Es un licor de alta calidad,
-          price: 45,
-          stock: 6,
-          picture: https://www.espaciovino.com.ar/media/default/0001/64/thumb_63197_default_big.jpeg,
-          variety: extensa
+          id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+          name: "Licor vicente",
+          description: "Un licor de alta calidad",
+          price: 30,
+          stock: 14,
+          picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+          graduation: "40",
+          Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+          isActive: true,
+          updatedAt: "2023-06-19T16:34:01.332Z",
+          createdAt: "2023-06-19T16:34:01.332Z"
         }
 
 ##### GET ( / ) (allLiquor)
@@ -349,33 +430,46 @@
 - data: (ejemplo)
 
         [
-         {
-          id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-          name: Red Laber,
-          description: Es un licor de alta calidad,
-          price: 45,
-          stock: 6,
-          picture: https://www.espaciovino.com.ar/media/default/0001/64/thumb_63197_default_big.jpeg,
-          variety: extensa
-        },
-         {
-          id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-          name: Red Laber,
-          description: Es un licor de alta calidad,
-          price: 45,
-          stock: 6,
-          picture: https://www.espaciovino.com.ar/media/default/0001/64/thumb_63197_default_big.jpeg,
-          variety: extensa
-        },
-         {
-          id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-          name: Red Laber,
-          description: Es un licor de alta calidad,
-          price: 45,
-          stock: 6,
-          picture: https://www.espaciovino.com.ar/media/default/0001/64/thumb_63197_default_big.jpeg,
-          variety: extensa
-        }
+          {
+            id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+            name: "Licor vicente",
+            description: "Un licor de alta calidad",
+            price: 30,
+            stock: 14,
+            picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+            graduation: "40",
+            Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+            isActive: true,
+            updatedAt: "2023-06-19T16:34:01.332Z",
+            createdAt: "2023-06-19T16:34:01.332Z"
+          },
+          {
+            id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+            name: "Licor vicente",
+            description: "Un licor de alta calidad",
+            price: 30,
+            stock: 14,
+            picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+            graduation: "40",
+            Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+            isActive: true,
+            updatedAt: "2023-06-19T16:34:01.332Z",
+            createdAt: "2023-06-19T16:34:01.332Z"
+          },
+          {
+            id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+            name: "Licor vicente",
+            description: "Un licor de alta calidad",
+            price: 30,
+            stock: 14,
+            picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+            graduation: "40",
+            Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+            isActive: true,
+            updatedAt: "2023-06-19T16:34:01.332Z",
+            createdAt: "2023-06-19T16:34:01.332Z"
+          }
+
         ]
 
 ##### GET ( /:id ) (liquorById)
@@ -396,13 +490,17 @@
 - data: (ejemplo)
 
         {
-          id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-          name: Red Laber,
-          description: Es un licor de alta calidad,
-          price: 45,
-          stock: 6,
-          picture: https://www.espaciovino.com.ar/media/default/0001/64/thumb_63197_default_big.jpeg,
-          variety: extensa
+          id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+          name: "Licor vicente",
+          description: "Un licor de alta calidad",
+          price: 30,
+          stock: 14,
+          picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+          graduation: "40",
+          Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+          isActive: true,
+          updatedAt: "2023-06-19T16:34:01.332Z",
+          createdAt: "2023-06-19T16:34:01.332Z"
         }
 
 ##### GET ( /name ) (wineByName)
@@ -423,41 +521,54 @@
 - data: (ejemplo)
 
         [
-        {
-          id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-          name: Red Laber,
-          description: Es un licor de alta calidad,
-          price: 45,
-          stock: 6,
-          picture: https://www.espaciovino.com.ar/media/default/0001/64/thumb_63197_default_big.jpeg,
-          variety: extensa
-        },
-        {
-          id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-          name: Red Laber otro,
-          description: Es un licor de alta calidad,
-          price: 45,
-          stock: 6,
-          picture: https://www.espaciovino.com.ar/media/default/0001/64/thumb_63197_default_big.jpeg,
-          variety: extensa
-        },
-        {
-          id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-          name: Red Laber one,
-          description: Es un licor de alta calidad,
-          price: 45,
-          stock: 6,
-          picture: https://www.espaciovino.com.ar/media/default/0001/64/thumb_63197_default_big.jpeg,
-          variety: extensa
-        }
+          {
+            id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+            name: "Licor vicente",
+            description: "Un licor de alta calidad",
+            price: 30,
+            stock: 14,
+            picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+            graduation: "40",
+            Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+            isActive: true,
+            updatedAt: "2023-06-19T16:34:01.332Z",
+            createdAt: "2023-06-19T16:34:01.332Z"
+          },
+          {
+            id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+            name: "Licor vicentino",
+            description: "Un licor de alta calidad",
+            price: 30,
+            stock: 14,
+            picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+            graduation: "40",
+            Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+            isActive: true,
+            updatedAt: "2023-06-19T16:34:01.332Z",
+            createdAt: "2023-06-19T16:34:01.332Z"
+          },
+          {
+            id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+            name: "Licor vicentenario",
+            description: "Un licor de alta calidad",
+            price: 30,
+            stock: 14,
+            picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+            graduation: "40",
+            Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+            isActive: true,
+            updatedAt: "2023-06-19T16:34:01.332Z",
+            createdAt: "2023-06-19T16:34:01.332Z"
+          }
+
         ]
 
-<!-- ##### PUT ( / )
+##### PUT ( /:id )
 
 ##### Request:
 
 - params
-  - id (UUID wine)
+  - id (UUID liquor)
 - query
   - userId (UUID User)
 - Body
@@ -466,6 +577,8 @@
   - price (float)
   - stock (int)
   - picture (string)
+  - graduation (int)
+  - isActive (boolean)
 
 ##### Response:
 
@@ -474,15 +587,20 @@
 - data: (ejemplo)
 
         {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Viña de Balbo,
-            description: Es un vino de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://jumboargentina.vtexassets.com/arquivos/ids/624748/Vino-Tinto-Vi-as-De-Balbo-Borgo-a-1-125-Cc-1-40525.jpg?v=637510296796370000
-        } -->
+          id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+          name: "Licor argentino puro",
+          description: "Un licor de alta calidad",
+          price: 30,
+          stock: 14,
+          picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+          graduation: "40",
+          Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+          isActive: true,
+          updatedAt: "2023-06-19T16:34:01.332Z",
+          createdAt: "2023-06-19T16:34:01.332Z"
+        }
 
-##### DELETE ( / )
+##### DELETE ( /:id )
 
 ##### Request:
 
@@ -500,14 +618,113 @@
 - data: (ejemplo)
 
          {
-            id: 20a74137-24aa-436f-a1f8-bee1e0c4d14b,
-            name: Red Laber one,
-            description: Es un licor de alta calidad,
-            price: 45,
-            stock: 6,
-            picture: https://www.espaciovino.com.ar/media/default/0001/64/thumb_63197_default_big.jpeg,
-            variety: extensa
+          id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+          name: "Licor argentino puro",
+          description: "Un licor de alta calidad",
+          price: 30,
+          stock: 14,
+          picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+          graduation: "40",
+          Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+          isActive: false,
+          updatedAt: "2023-06-19T16:34:01.332Z",
+          createdAt: "2023-06-19T16:34:01.332Z"
         }
+
+---
+
+### **_AllDrinks ( /both_drinks )_**
+
+##### GET ( / ) (drinksById)
+
+##### Request:
+
+- params
+  - none
+- query
+  - id (UUID liquor)
+- Body
+  - none
+
+##### Response:
+
+- status: 202
+- message: The product was found
+- data: (ejemplo)
+
+        {
+          id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+          name: "Licor vicente",
+          description: "Un licor de alta calidad",
+          price: 30,
+          stock: 14,
+          picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+          graduation: "40",
+          Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+          isActive: true,
+          updatedAt: "2023-06-19T16:34:01.332Z",
+          createdAt: "2023-06-19T16:34:01.332Z"
+        }
+
+##### GET ( /name ) (allDrinksByName)
+
+##### Request:
+
+- params
+  - none
+- query
+  - name (nombre a buscar)
+- Body
+  - none
+
+##### Response:
+
+- status: 200
+- message: The product was found
+- data: (ejemplo)
+
+        [
+          {
+            id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+            name: "Licor vicente",
+            description: "Un licor de alta calidad",
+            price: 30,
+            stock: 14,
+            picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+            graduation: "40",
+            Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+            isActive: true,
+            updatedAt: "2023-06-19T16:34:01.332Z",
+            createdAt: "2023-06-19T16:34:01.332Z"
+          },
+          {
+            id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+            name: "Vino vicentino",
+            description: "Un licor de alta calidad",
+            price: 30,
+            stock: 14,
+            picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+            graduation: "40",
+            Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+            isActive: true,
+            updatedAt: "2023-06-19T16:34:01.332Z",
+            createdAt: "2023-06-19T16:34:01.332Z"
+          },
+          {
+            id: "ddf0a380-2db0-4cf5-b0bd-ce9ee6e5ede8",
+            name: "Vino vicentenario",
+            description: "Un licor de alta calidad",
+            price: 30,
+            stock: 14,
+            picture: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdW9yfGVufDB8fDB8fHww&w=1000&q=80",
+            graduation: "40",
+            Liquor_categoryId: "787e78fc-736d-4341-9b1d-a81631ead5e3",
+            isActive: true,
+            updatedAt: "2023-06-19T16:34:01.332Z",
+            createdAt: "2023-06-19T16:34:01.332Z"
+          }
+
+        ]
 
 ---
 
@@ -567,7 +784,7 @@
           }
         ]
 
-##### DELETE ( / )
+##### DELETE ( /:id )
 
 ##### Request:
 
@@ -590,7 +807,6 @@
         }
 
 ---
-
 
 ### **_Liquor_category ( /category_liquor )_**
 
@@ -616,7 +832,7 @@
           name: Licores destilados,
         }
 
-##### GET ( / ) (allWine)
+##### GET ( / ) (allLiquor)
 
 ##### Request:
 
@@ -648,7 +864,7 @@
           }
         ]
 
-##### DELETE ( / )
+##### DELETE ( /:id )
 
 ##### Request:
 

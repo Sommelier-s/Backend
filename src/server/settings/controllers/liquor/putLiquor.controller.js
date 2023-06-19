@@ -10,7 +10,6 @@ const PutLiquor = async (req, res) => {
 
     const { userId } = req.query;
 
-    console.log(userId);
     const { name, description, price, stock, picture, graduation, isActive } = req.body;
 
     try {

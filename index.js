@@ -1,5 +1,5 @@
 // Local Dependencies.
-const app  = require("./src/server/index");
+const app = require("./src/server/index");
 const sequelize = require("./src/database/index");
 
 
