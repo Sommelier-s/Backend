@@ -7,6 +7,7 @@ const { Router } = require("express");
 const routes = Router();
 
 routes.use("/wine",  require('./WineRoute/wineRoute'));
+routes.use("/liquor", require('./LiquorRoute/liquorRoute'));
 routes.use("/auth", require("./UserRoute/userRoute"));
 routes.use("/category_wine", require("./CategoriesRoutes/wineCategoryRoutes"));
 routes.use("/category_liquor", require("./CategoriesRoutes/liquorCategoryRoutes"));
