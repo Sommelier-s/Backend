@@ -7,6 +7,8 @@ const getSales = async (req, res) => {
         if(month.length === 1) {
             month = "0" + month;
         }
+        //valid month
+        if( Number(month) < 1 || Number(month) > 12) return res.status(409).json({ status:409 , message: "Invalid month"})
         //Get all sales
         const response = await Sale.findAll();
         //Filter by month required
