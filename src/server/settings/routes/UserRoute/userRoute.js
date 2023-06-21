@@ -3,7 +3,7 @@ const { User } = require("../../../../database/model/relationships");
 const router = express.Router();
 
 router.post("/create", async(req, res) => {
-    const { first_name, last_name, email, password, date_birth } = req.body;
+    const { first_name, last_name, email, password, date_birth, is_Admin } = req.body;
 
     const userExits = await User.findOne({ where: { email } });
 
@@ -35,7 +35,8 @@ router.post("/create", async(req, res) => {
         last_name,
         email,
         password,
-        date_birth
+        date_birth,
+        is_Admin
     })
 
    await user.save()
