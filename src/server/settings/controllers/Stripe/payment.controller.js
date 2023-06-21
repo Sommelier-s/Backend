@@ -1,8 +1,10 @@
 // Replace if using a different env file or config
-const env = require("dotenv").config({ path: "./.env" });
+require("dotenv").config();
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2022-08-01",
+const { STRIPE_SECRET_KEY } = process.env;
+
+const stripe = require("stripe")(STRIPE_SECRET_KEY, {
+    apiVersion: "2022-08-01",
 });
 
 
@@ -11,7 +13,21 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
 const payment = async (req, res) => {
     //Take the price per body
     const { amount } = req.body;
-    if (!amount ) return res.status(400).json({ error:"Try again"})
+
+    if (!amount) return res.status(400).json({
+        status: 400, error: "The amount field is required"
+    })
+
+    if (amount === "") return res.status(400).json({
+        status: 400, error: "The amount field is required"
+    })
+
+
+    if (isNaN(amount)) return res.status(400).json({
+        status: 400, error: "The amount field must be an integer"
+    })
+
+
     try {
         //Create the payment attempt
         const paymentIntent = await stripe.paymentIntents.create({
@@ -25,13 +41,14 @@ const payment = async (req, res) => {
             }
         })
         //Responds with the secret client
-        res.status(200).json({ clientSecret: paymentIntent.client_secret })
+        res.status(200).json({ status: 200, message: "Purchase successfully completed", data: paymentIntent.client_secret })
 
-     } catch (error) {
+    } catch (error) {
         //In case of error, reply with a 404
-        res.status(404).json({
+        res.status(500).json({
             error: {
-                message: error.message,
+                status: 500,
+                error: error.message,
             }
         })
     }
