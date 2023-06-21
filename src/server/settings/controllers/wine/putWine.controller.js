@@ -34,7 +34,6 @@ const controllerPutWine = async (req, res) => {
         if (!product) return res.status(400).json({ status: 400, error: "The product does exist" });
 
         //I set the product
-
         product.update({
             name,
             description,
