@@ -1,9 +1,11 @@
-const { Wine, Wine_category } = require('../../../../database/model/relationships')
+const { Wine } = require('../../../../database/model/relationships')
 
-const getAllWines = async (req, res) => {
+const getActiveWine = async (req, res) => {
     try {
         const response = await Wine.findAll({
-            include: Wine_category
+            where: {
+                isActive: true
+            }
         })
         //Valid if we have a response
         if (!response || response.length === 0) return res.status(404).json({ status: 404, message: "Product not found" })
@@ -13,4 +15,4 @@ const getAllWines = async (req, res) => {
     }
 };
 
-module.exports = getAllWines;
+module.exports = getActiveWine;
