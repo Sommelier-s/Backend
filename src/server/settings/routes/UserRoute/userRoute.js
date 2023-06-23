@@ -48,7 +48,7 @@ router.get("/user", async(req, res) => {
     //buscar los usuarios en la base de datos
     const users = await User.findAll({})
     //si no hay usuarios
-    if (!users) { 
+    if (!users || users.length === 0) { 
         return res.status(400).json({ message: "No hay usuarios" });
     }
 
