@@ -7,6 +7,8 @@ const deleteLiquorCategory = require('../controllers/categoryLiquor/deleteLiquor
 const getLiquorCategories = require('../controllers/categoryLiquor/getLiquorCategories.controller')
 const postLiquorCategories = require('../controllers/categoryLiquor/postLiquorCategory.controller')
 
+const postPurchasedProducts = require('../controllers/PurchasedProducts/postPurchasedProduct.controller.js')
+const getPurchasedProductsById = require('../controllers/PurchasedProducts/getByIdPurchasedByUser.controller.js')
 
 
 module.exports = {
@@ -15,5 +17,7 @@ module.exports = {
     postWineCategories,
     deleteLiquorCategory,
     getLiquorCategories,
-    postLiquorCategories
+    postLiquorCategories,
+    postPurchasedProducts,
+    getPurchasedProductsById
 }
