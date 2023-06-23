@@ -26,13 +26,9 @@ const deleteComments = async (req, res) => {
         //Valid response
         if(!response) return res.status(404).json( {status: 404, message: 'Comment not found'});
         //Delete the comment
-        const deletedComment = await Comments.destroy({
-            where: {
-                id
-            }
-        });
+        response.destroy();
         //Send response
-        return res.status(200).json({ status:200, message: 'Comment was deleted correctly', commment: deletedComment});
+        return res.status(200).json({ status:200, message: 'Comment was deleted correctly'});
 
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message});

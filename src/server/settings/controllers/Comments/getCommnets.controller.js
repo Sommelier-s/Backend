@@ -20,7 +20,7 @@ const getComments = async (req, res) => {
         });
         
         if(!comment) return res.status(404).json({ status:404, message: 'There is not comments for the product'});
-        return res.status(200).json({ status: 200, message: 'Comment found', comment: comment});
+        return res.status(200).json({ status: 200, message: 'Comment found', data: comment});
         
     } catch (error) {
         return res.status(500).json({ status:500, message: error.message});
