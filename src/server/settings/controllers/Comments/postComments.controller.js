@@ -38,13 +38,10 @@ const postComments = async (req, res) => {
             client_name: Fullname,
             comment,
             user_id
-
         })
 
-        //Valid the response
-        if (!comment) return res.status(404).json({ status: 404, message: 'There is not comments for the product' });
         //Send the response
-        return res.status(200).json({ status: 200, message: 'Comment found', comment: post });
+        return res.status(200).json({ status: 200, message: 'Comment found', data: post });
 
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message })

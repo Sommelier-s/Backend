@@ -32,7 +32,7 @@ const putComments = async (req, res) => {
             comment
         })
         //send the response
-        return res.status(200).json({ status: 200, message: 'Comment updated correctly', comment: response });
+        return res.status(200).json({ status: 200, message: 'Comment updated correctly', data: response });
 
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message });
