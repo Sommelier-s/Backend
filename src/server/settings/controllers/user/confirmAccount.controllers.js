@@ -1,6 +1,5 @@
 const User = require("../../../../database/model/user.model");
 
-
 // Endpoint Account Information  
 const confirmar = async (req, res) => {
     // Get the token that comes from params

@@ -21,10 +21,6 @@ const login = async (req, res) => {
             const error = new Error('Tu usuario no ha sido confirmado')
             return res.status(403).json({ msg: error.message })
         }
-        // // si la cuenta del usuario esta activa 
-        // if(!user.is_active) { 
-        //     return res.status(404).json({ message: "Account is not active" })
-        // }
         // We show the data of the authenticated user
         res.json({
             id: user.id,
