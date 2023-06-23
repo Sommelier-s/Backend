@@ -21,7 +21,7 @@ const olvidePasswordUser = async (req, res) => {
         // We save the user in the database
         await user.save();
         // Email sent with instructions for email recovery
-        olvidePassword(user)
+        emailOlvidePassword(user)
         res.json({ msg: 'We have sent an email with the instructions' })
     } catch (error) {
         return res.status(403).json({ msg: error.message })

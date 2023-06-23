@@ -9,6 +9,22 @@ const registroUser = async (req, res) => {
     // Obtener los datos que llegan en el cuerpo de la solicitud
     const { first_name, last_name, date_birth, email, password } = req.body;
 
+        // Validar que el usuario tenga más de 18 años
+        let fechaNacimiento =  new Date(date_birth);
+        let fechaActual = new Date();
+        let edad =  fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+        let mes = fechaActual.getMonth() - fechaNacimiento.getMonth();
+        let dia =  fechaActual.getDate() - fechaNacimiento.getDate();
+        if (mes < 0 || (mes === 0 && dia < 0)) {
+           edad--;
+        }
+        if (edad < 18) {
+          return res.status(406).json({
+            status: 406,
+            message: "You must be over 18 years old to register",
+          });
+        }
+
     // Verificar si ya existe un usuario con el mismo correo electrónico
     const emailVerify = await User.findOne({
       where: {
@@ -24,26 +40,9 @@ const registroUser = async (req, res) => {
       });
     }
 
-    // Validar que el usuario tenga más de 18 años
-    let fechaNacimiento = new Date(date_birth);
-    let fechaActual = new Date();
-    let edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-    let mes = fechaActual.getMonth() - fechaNacimiento.getMonth();
-    let dia = fechaActual.getDate() - fechaNacimiento.getDate();
-    if (mes < 0 || (mes === 0 && dia < 0)) {
-      edad--;
-    }
-    if (edad < 18) {
-      return res.status(406).json({
-        status: 406,
-        message: "You must be over 18 years old to register",
-      });
-    }
-
     // Hashear la contraseña
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
-
     // Crear usuario en la base de datos
     const user = new User({
       first_name,
@@ -51,7 +50,6 @@ const registroUser = async (req, res) => {
       date_birth,
       email,
       password: hashedPassword,
-      accountConfirmed: true,
     });
 
     // Generar el token
