@@ -4,6 +4,8 @@ const Liquor = require("./liquor.model");
 const Wine_category = require('./wineCategory.model');
 const Liquor_category = require('./liquorCategory.model');
 const Sale = require('./sales.models');
+const Liquor_rating = require('./liquorRating.model');
+const Wine_rating = require('./wineRating.model');
 
 
 Wine_category.hasMany(Wine, { foreignKey:"Wine_categoryId"});
@@ -18,6 +20,8 @@ module.exports = {
     Liquor,
     Wine_category,
     Liquor_category,
-    Sale
+    Sale,
+    Wine_rating,
+    Liquor_rating
 }
 
