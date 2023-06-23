@@ -13,6 +13,7 @@ routes.use("/both_drinks", require('./WineAndLiquorRoutes/wineAndLiquor.routes')
 routes.use("/auth", require("./UserRoute/userRoute"));
 routes.use("/category_wine", require("./CategoriesRoutes/wineCategoryRoutes"));
 routes.use("/category_liquor", require("./CategoriesRoutes/liquorCategoryRoutes"));
+routes.use('/comment', require('./CommentsRoutes/commentsRoutes'));
 
 
 
