@@ -32,8 +32,6 @@ const registroUser = async (req, res) => {
       },
     });
 
-
-
     // Si el usuario ya existe, retornamos un error
     if (emailVerify) {
       return res.status(406).json({
@@ -45,7 +43,6 @@ const registroUser = async (req, res) => {
     // Hashear la contraseña
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
-    const token = generarIdToken();
     // Crear usuario en la base de datos
     const user = new User({
       first_name,

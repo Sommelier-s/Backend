@@ -11,6 +11,9 @@ const comprobarToken = require("../../controllers/user/findOutToken.controllers"
 const nuevoPassword = require("../../controllers/user/newPassword.controllers");
 const updateUser = require("../../controllers/user/updateUser.controllers");
 const deleteUser = require("../../controllers/user/deleteUser.controllers");
+const getAllUser = require("../../controllers/user/GetAllUserCotroller");
+const getUserById = require("../../controllers/user/getByIdController");
+const { admin, verifyToken } = require("../../middleware/checkAuth");
 
 // Router Instance.
 const userRoutes = Router();
@@ -21,16 +24,22 @@ userRoutes.post("/register", registroUser);
 userRoutes.post("/login", login);
 // Confirm account after registration
 userRoutes.get("/confirmar/:token", confirmar);
+
 // Authenticate with google login
 // userRoutes.post("/googlelogin",  googlelogin);
+
 // Password recovery send email for recovery
 userRoutes.post("/olvide-password", olvidePasswordUser);
 // Enter password the new password with valid token
 userRoutes.route("/olvide-password/:token").get(comprobarToken).post(nuevoPassword);
-//update user account
-userRoutes.put("/update-user/:id", updateUser)
-// delete user account
-userRoutes.delete("/delete-user/:id", deleteUser)
 
+//get user account
+userRoutes.get("/user", verifyToken, admin,  getAllUser)
+//getID user account
+userRoutes.get("/user/:id", verifyToken, admin, getUserById)
+//update user account
+userRoutes.put("/update-user/:id", verifyToken, admin, updateUser)
+// delete user account
+userRoutes.delete("/delete-user/:id", verifyToken, admin, deleteUser)
 
 module.exports = userRoutes;
