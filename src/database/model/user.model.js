@@ -48,11 +48,6 @@ const User = sequelize.define(
             type: DataTypes.BOOLEAN,
             defaultValue: true,
         },
-        about_me: {
-            type: DataTypes.TEXT,
-            defaultValue: "Your description here...",
-            allowNull: true,
-        },
         token: {
             type: DataTypes.STRING,
             allowNull: true,
