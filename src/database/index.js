@@ -2,21 +2,24 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
 // Environment Variables.
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DIALECT, DB_PORT, DB_DEPLOY_RENDER } =
-    process.env;
+const { DEBUG, DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DIALECT, DB_PORT } =
+  process.env;
 
-// Database Local Connection.
-// const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-//     host: DB_HOST,
-//     dialect: DB_DIALECT,
-//     port: DB_PORT,
-//     logging: false,
-// });
+if (DEBUG === "true") {
+  // Database Local Connection.
+  const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+    host: DB_HOST,
+    dialect: DB_DIALECT,
+    port: DB_PORT,
+    logging: false,
+  });
 
-// module.exports = sequelize;
+  module.exports = sequelize;
 
-//Render deploy database
-const sequelize = new Sequelize(DB_DEPLOY_RENDER, {
+} else {
+
+  //Render deploy database
+  const sequelize = new Sequelize(DB_DEPLOY_RENDER, {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
     dialectOptions: {
@@ -25,5 +28,8 @@ const sequelize = new Sequelize(DB_DEPLOY_RENDER, {
       },
     }
   });
+  module.exports = sequelize;
+}
 
-module.exports = sequelize;
+
+
