@@ -6,8 +6,8 @@ const { Router } = require("express");
 // Router Instance.
 const routes = Router();
 
-routes.use("/sale",  require('./SaleRoutes/saleRoutes'));
-routes.use("/wine",  require('./WineRoute/wineRoute'));
+routes.use("/sale", require('./SaleRoutes/saleRoutes'));
+routes.use("/wine", require('./WineRoute/wineRoute'));
 routes.use("/liquor", require('./LiquorRoute/liquorRoute'));
 routes.use("/both_drinks", require('./WineAndLiquorRoutes/wineAndLiquor.routes'));
 routes.use("/auth", require("./UserRoute/userRoute"));
@@ -18,6 +18,7 @@ routes.use("/payment", require("./Stripe/PaymentRoutes"));
 routes.use("/purchased", require("./PurchasedProductRoutes/ProductsPurchasedRoutes"));
 routes.use("/ratingWines", require("./WineAndLiquorRatingRoutes/wineRatingRoute"));
 routes.use("/ratingLiquors", require("./WineAndLiquorRatingRoutes/liquorRatingRoute"));
+routes.use("/cloudinary", require("./ClourdinaryRoutes/Cloudinary.route"));
 
 
 

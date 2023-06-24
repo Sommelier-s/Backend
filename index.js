@@ -15,8 +15,12 @@ function main() {
     app.listen(PORT, async () => {
         // Data Syncronization.
         await sequelize.sync({ force: false });
-        // Listening Verify.
-        console.log(`server listening on http://localhost:${PORT}`);
+        if (process.env.DEBUG === "true") {
+            // Listening Verify.
+            console.log(`server listening on http://localhost:${PORT}`);
+        } else {
+            console.log(`server listening on https://server-sommeliers.onrender.com:${PORT}`);
+        }
 
     });
 }
