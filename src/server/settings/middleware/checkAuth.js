@@ -1,22 +1,41 @@
 const jwt = require("jsonwebtoken");
+const User = require("../../../database/model/user.model");
 
 // Middleware for data authorization
-const verifyToken = (req, res, next ) => {
-    try {
-        const token = req.header("Authorization");
+const verifyToken = async (req, res, next) => {
 
-        if(!token ) {
-            return res.status(401).json({message: "Invalid Authentication"});
+    let token;
+
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+        try {
+            token = req.headers.authorization.split(' ')[1];
+            // console.log(token)
+
+            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            // console.log(decoded.userId)
+
+            req.usuario = await User.findByPk(decoded.id)
+
+            return next()
+        } catch (error) {
+            return res.status(404).json({ status: 404, error: 'Hubo un error' })
         }
-        if(token.startsWith("Bearer ")) {
-            token = token.slice(7, token.length).trimLeft();
-         }
-         const varified = jwt.verify(token, process.env.JWT_SECRET);
-         req.user = varified;
-         next();
-    } catch (error) {
-        res.status(401).json({error: error.message});
     }
+
+    if (!token) {
+        const error = new Error('Token no valido')
+        return res.status(401).json({ status: 401, error: error.message })
+    }
+
+    next();
 }
 
-module.exports = verifyToken;
+// User must be an admin
+const admin = async (req, res, next) => {
+    if (!req.usuario.dataValues.is_Admin) {
+        return res.status(401).json({ status: 401, error: 'No tienes permisos para realizar esta acción' })
+    }
+    next();
+};
+
+module.exports = { verifyToken, admin };

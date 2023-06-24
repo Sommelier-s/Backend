@@ -4,7 +4,6 @@ dotenv.config()
 
 const emailRegistro = async (datos) => {
     const {email,first_name,token} = datos;
-    console.log(email,first_name,token)
 
     const transport = nodemailer.createTransport({
         host:"smtp.gmail.com",
@@ -22,7 +21,7 @@ const emailRegistro = async (datos) => {
         text: 'Comprueba tu cuenta en Sommelier',
         html:`<P>Hola: ${first_name} Comprueba tu cuenta en Sommelier</P>
         <p>Tu cuenta ya esta casi lista solo debes comprobarla en el siguiente enlace:</p>
-        <a href="${process.env.BACKEND_URL}/confirmar/${token}">Comprobar Cuenta</a>
+        <a href="${process.env.BACKEND_URL}/auth/confirmar/${token}">Comprobar Cuenta</a>
         <p>Si tu no confirmaste tu cuenta, puedes ignorar el mensaje</p>
         `
       })
@@ -31,14 +30,14 @@ const emailRegistro = async (datos) => {
 
 const emailOlvidePassword = async (datos) => {
   const {email,first_name,token} = datos;
-  //TODO: Mover hacia variables de entorno
+
   const transport = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     secure: false,
     port: process.env.EMAIL_PORT,
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      pass: process.env.EMAIL_PASSWORD,
     }
     });
 
