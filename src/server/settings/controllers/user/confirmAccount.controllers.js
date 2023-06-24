@@ -9,9 +9,9 @@ const confirmar = async (req, res) => {
     // We validate that it is not used
     if (!usuarioConfirmar) {
         const error = new Error('invalid token')
-        return res.status(403).json({ msg: error.message })
+        return res.status(403).json({ status: 403, error: error.message })
     }
-    
+
     try {
         // We confirm the account
         usuarioConfirmar.accountConfirmed = true;
@@ -19,9 +19,9 @@ const confirmar = async (req, res) => {
         usuarioConfirmar.token = ""
         // We save the user's changes
         await usuarioConfirmar.save();
-        res.status(200).send({ message: 'confirmed user' })
+        res.status(200).send({ status: 200, message: 'confirmed user' })
     } catch (error) {
-        return res.status(403).json({ msg: error.message })
+        return res.status(500).json({ status: 500, error: error.message })
     }
 }
 
