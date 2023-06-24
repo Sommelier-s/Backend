@@ -12,7 +12,7 @@ const olvidePasswordUser = async (req, res) => {
     // We validate that the email exists
     if (!user) {
         const error = new Error('Email no existe')
-        return res.status(404).json({ msg: error.message })
+        return res.status(404).json({ status: 404, error: error.message })
     }
 
     try {
@@ -22,9 +22,9 @@ const olvidePasswordUser = async (req, res) => {
         await user.save();
         // Email sent with instructions for email recovery
         emailOlvidePassword(user)
-        res.json({ msg: 'We have sent an email with the instructions' })
+        res.status(200).json({ status: 200, message: 'We have sent an email with the instructions' })
     } catch (error) {
-        return res.status(403).json({ msg: error.message })
+        return res.status(403).json({ error: error.message })
     }
 }
 
