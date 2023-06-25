@@ -34,12 +34,14 @@ userRoutes.post("/olvide-password", olvidePasswordUser);
 userRoutes.route("/olvide-password/:token").get(comprobarToken).post(nuevoPassword);
 
 //get user account
-userRoutes.get("/user", verifyToken, admin,  getAllUser)
+userRoutes.get("/user", getAllUser)
 //getID user account
 userRoutes.get("/user/:id", verifyToken, admin, getUserById)
 //update user account
-userRoutes.put("/update-user/:id", verifyToken, admin, updateUser)
+userRoutes.put("/update-user/:id", updateUser) //!Hackeo validacion para poder setear el primer user como admin
+// userRoutes.put("/update-user/:id", verifyToken, admin, updateUser) //! descomentar para volver a realizar validaciones
 // delete user account
-userRoutes.delete("/delete-user/:id", verifyToken, admin, deleteUser)
+userRoutes.delete("/delete-user/:id", deleteUser) //!Hackeo validacion para poder setear el primer user como admin
+// userRoutes.delete("/delete-user/:id", verifyToken, admin, deleteUser) //! descomentar para volver a realizar validaciones
 
 module.exports = userRoutes;

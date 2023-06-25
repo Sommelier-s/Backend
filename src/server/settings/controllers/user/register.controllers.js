@@ -32,6 +32,8 @@ const registroUser = async (req, res) => {
       },
     });
 
+    console.log(emailVerify); //!Lo uso para sacar el id del usuario y poder modificarlo a administrador
+
     // Si el usuario ya existe, retornamos un error
     if (emailVerify) {
       return res.status(406).json({
