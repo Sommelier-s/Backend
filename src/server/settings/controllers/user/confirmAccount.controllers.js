@@ -19,7 +19,7 @@ const confirmar = async (req, res) => {
         usuarioConfirmar.token = ""
         // We save the user's changes
         await usuarioConfirmar.save();
-        res.status(200).send({ status: 200, message: 'confirmed user' })
+        res.status(200).send({ status: 200, message: 'Usuario confirmado' })
     } catch (error) {
         return res.status(500).json({ status: 500, error: error.message })
     }
