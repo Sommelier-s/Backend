@@ -11,7 +11,7 @@ const comprobarToken = require("../../controllers/user/findOutToken.controllers"
 const nuevoPassword = require("../../controllers/user/newPassword.controllers");
 const updateUser = require("../../controllers/user/updateUser.controllers");
 const deleteUser = require("../../controllers/user/deleteUser.controllers");
-const getAllUser = require("../../controllers/user/GetAllUserCotroller");
+const getAllUser = require("../../controllers/user/getAllUser.controller");
 const getUserById = require("../../controllers/user/getByIdController");
 const { admin, verifyToken } = require("../../middleware/checkAuth");
 
@@ -34,7 +34,7 @@ userRoutes.post("/olvide-password", olvidePasswordUser);
 userRoutes.route("/olvide-password/:token").get(comprobarToken).post(nuevoPassword);
 
 //get user account
-userRoutes.get("/user", verifyToken, admin,  getAllUser)
+userRoutes.get("/user", verifyToken, admin, getAllUser)
 //getID user account
 userRoutes.get("/user/:id", verifyToken, admin, getUserById)
 //update user account
