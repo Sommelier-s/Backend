@@ -22,7 +22,7 @@ if (DEBUG === "true") {
   const sequelize = new Sequelize(process.env.DB_DEPLOY_RENDER, {
     logging: false, // set to console.log to see the raw SQL queries
     native: false,
-    dialect: DB_DIALECT, // lets Sequelize know we can use pg-native for ~30% more speed
+    dialect: "postgres", // lets Sequelize know we can use pg-native for ~30% more speed
     dialectOptions: {
       ssl: {
         require: true,
