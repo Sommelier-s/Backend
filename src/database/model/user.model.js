@@ -62,8 +62,12 @@ const User = sequelize.define(
         },
         customer_id: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true, 
         },
+        googleId: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        }
     },
     {
         // No pluralization.

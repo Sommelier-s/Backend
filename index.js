@@ -1,6 +1,8 @@
 // Local Dependencies.
 const app = require("./src/server/index");
 const sequelize = require("./src/database/index");
+const dotenv = require("dotenv");
+dotenv.config();
 
 
 // Models Import.
