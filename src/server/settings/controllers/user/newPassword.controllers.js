@@ -19,9 +19,9 @@ const nuevoPassword = async (req, res) => {
     try {
         // We save the user's changes
         await user.save();
-        res.json({ msg: 'Password changed successfully' })
+        res.status(200).json({ status: 200, message: 'Password changed successfully' })
     } catch (error) {
-        return res.status(403).json({ msg: error.message })
+        return res.status(500).json({ error: error.message })
     }
 }
 

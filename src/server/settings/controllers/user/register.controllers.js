@@ -9,21 +9,21 @@ const registroUser = async (req, res) => {
     // Obtener los datos que llegan en el cuerpo de la solicitud
     const { first_name, last_name, date_birth, email, password } = req.body;
 
-        // Validar que el usuario tenga más de 18 años
-        let fechaNacimiento =  new Date(date_birth);
-        let fechaActual = new Date();
-        let edad =  fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-        let mes = fechaActual.getMonth() - fechaNacimiento.getMonth();
-        let dia =  fechaActual.getDate() - fechaNacimiento.getDate();
-        if (mes < 0 || (mes === 0 && dia < 0)) {
-           edad--;
-        }
-        if (edad < 18) {
-          return res.status(406).json({
-            status: 406,
-            message: "You must be over 18 years old to register",
-          });
-        }
+    // Validar que el usuario tenga más de 18 años
+    let fechaNacimiento = new Date(date_birth);
+    let fechaActual = new Date();
+    let edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+    let mes = fechaActual.getMonth() - fechaNacimiento.getMonth();
+    let dia = fechaActual.getDate() - fechaNacimiento.getDate();
+    if (mes < 0 || (mes === 0 && dia < 0)) {
+      edad--;
+    }
+    if (edad < 18) {
+      return res.status(406).json({
+        status: 406,
+        error: "You must be over 18 years old to register",
+      });
+    }
 
     // Verificar si ya existe un usuario con el mismo correo electrónico
     const emailVerify = await User.findOne({
@@ -36,7 +36,7 @@ const registroUser = async (req, res) => {
     if (emailVerify) {
       return res.status(406).json({
         status: 406,
-        message: "Email already exists",
+        error: "Email already exists",
       });
     }
 
@@ -63,13 +63,13 @@ const registroUser = async (req, res) => {
 
     res.status(201).send({
       status: 201,
-      message: "User created successfully",
+      message: "Usuario creado correctamente, revisa el correo",
     });
   } catch (error) {
     // Retornar el mensaje de error
     res.status(500).send({
       status: 500,
-      message: error.message,
+      error: error.message,
     });
   }
 };
