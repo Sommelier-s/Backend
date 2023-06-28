@@ -28,6 +28,13 @@ const Wine = sequelize.define(
             defaultValue: "https://previews.123rf.com/images/naddya/naddya1307/naddya130700039/20960698-negro-silueta-de-la-botella-de-vino-de-vidrio-y-la-ilustraci%C3%B3n-vectorial.jpg",
             allowNull: true,
         },
+        id_picture: {
+            type: DataTypes.STRING(),
+        },
+        is_product_month: {
+            type: DataTypes.BOOLEAN(),
+            defaultValue: false,
+        },
         stock: {
             type: DataTypes.INTEGER(),
         },

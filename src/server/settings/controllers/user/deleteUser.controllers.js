@@ -8,7 +8,7 @@ const deleteUser = async (req, res) => {
         if (!user) {
             return res.status(404).json({ status: 404, error: 'User not found' })
         }
-        user.is_active = false
+        user.isActive = false
         await user.save();
         return res.status(200).json({ status: 200, message: 'Record deleted successfully' });
     } catch (error) {
