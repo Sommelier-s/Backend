@@ -8,6 +8,7 @@ const Purchased_products = require('./purchasedProduct.model');
 const Liquor_rating = require('./liquorRating.model');
 const Wine_rating = require('./wineRating.model');
 const Comments = require('./comments.model');
+const Offer = require('./offer.model');
 
 
 
@@ -27,6 +28,7 @@ module.exports = {
     Purchased_products,
     Wine_rating,
     Liquor_rating,
-    Comments
+    Comments,
+    Offer,
 }
 

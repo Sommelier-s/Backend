@@ -6,15 +6,17 @@ const getWineByName = require('../../controllers/wine/getWineByName.controller')
 const postWine = require('../../controllers/wine/postWine.controller');
 const deleteWine = require('../../controllers/wine/deleteWine.controller');
 const putWine = require('../../controllers/wine/putWine.controller');
+const putWineStock = require('../../controllers/wine/putWineStoc.controller');
 const deletePermanentlyWine = require('../../controllers/wine/deletePermanentlyWine.controller');
 
 const router = Router();
 
 router.post('/', postWine);
 router.get('/', getWine);
+router.get('/search', getWineByName);
 router.get('/active', getActiveWine);
+router.put('/stock/:id', putWineStock);
 router.get('/:id', getWineById);
-router.get('/name', getWineByName);
 router.put('/:id', putWine);
 router.delete('/:id', deleteWine);
 router.delete('/permanently/:id', deletePermanentlyWine);

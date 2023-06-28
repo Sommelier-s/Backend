@@ -19,9 +19,13 @@ const User = sequelize.define(
         last_name: {
             type: DataTypes.STRING(),
         },
+        id_picture: {
+            type: DataTypes.STRING(),
+            defaultValue: "usersPictures/vjnwieyjnhslptbgtwcs"
+        },
         profile_picture: {
             type: DataTypes.STRING,
-            defaultValue: "https://ionicframework.com/docs/img/demos/avatar.svg",
+            defaultValue: "http://res.cloudinary.com/dzuenswtl/image/upload/v1687875782/usersPictures/vjnwieyjnhslptbgtwcs.png",
             allowNull: true,
         },
         email: {
