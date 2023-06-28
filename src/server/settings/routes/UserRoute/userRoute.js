@@ -69,7 +69,7 @@ userRoutes
 
 //get user account
 
-userRoutes.get("/user", verifyToken, admin, getAllUser)
+userRoutes.get("/user", getAllUser)
 
 //getID user account
 userRoutes.get("/user/:id", verifyToken, admin, getUserById);

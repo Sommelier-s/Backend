@@ -7,15 +7,16 @@ function esUUID(id) {
 }
 
 //Function that validates all the fields of body
-function validateFields({ puntuation, productId }) {
+function validateFields({ puntuation, productId, comment }) {
     if (!productId || productId === "" || !esUUID(productId)) return false;
+    if (!comment || comment === "") return false;
     if (!puntuation || isNaN(puntuation)) return false;
     return true;
 }
 
 const postWineRating = async (req, res) => {
     const { id } = req.query;
-    const { productId, puntuation } = req.body;
+    const { productId, puntuation, comment } = req.body;
 
     try {
         //Valid that the fields are valid.
@@ -44,6 +45,7 @@ const postWineRating = async (req, res) => {
             puntuation: puntuation,
             user_id: id,
             wine_id: productId,
+            comment
         })
         res.status(200).json({ status: 200, message: "The raiting has been added successfully!", data: addRating });
     } catch (error) {
