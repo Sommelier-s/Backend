@@ -4,9 +4,9 @@ const User = require("../../../../database/model/user.model");
 const getAllUser = async (req, res) => {
     try {
         const users = await User.findAll({
-            attributes: ['id', 'first_name', 'last_name', 'profile_picture', 'email', 'date_birth']
+            //attributes: ['id', 'first_name', 'last_name', 'profile_picture', 'email', 'date_birth']
         })
-        if (!users) {
+        if (!users || users.length === 0) {
             return res.status(404).json({ status: 404, error: 'no users' })
         }
         return res.json(users);
