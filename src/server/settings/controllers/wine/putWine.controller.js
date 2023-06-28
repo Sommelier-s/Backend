@@ -5,7 +5,7 @@ function esUUID(id) {
     return uuidPattern.test(id);
 }
 
-const controllerPutWine = async (req, res) => {
+const putWine = async (req, res) => {
     const { userId } = req.query;
     const { id } = req.params;
     const { name, description, price, stock, picture, isActive } = req.body;
@@ -50,4 +50,4 @@ const controllerPutWine = async (req, res) => {
     }
 }
 
-module.exports = controllerPutWine;
+module.exports = putWine;
