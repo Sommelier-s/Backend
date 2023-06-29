@@ -9,6 +9,7 @@ const Liquor_rating = require('./liquorRating.model');
 const Wine_rating = require('./wineRating.model');
 const Comments = require('./comments.model');
 const Offer = require('./offer.model');
+const Cart = require('./cart.model');
 
 
 
@@ -30,5 +31,6 @@ module.exports = {
     Liquor_rating,
     Comments,
     Offer,
+    Cart,
 }
 

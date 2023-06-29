@@ -5,13 +5,21 @@ const getBestLiquors = async (req, res) => {
    const { quantity } = req.query;
   try {
     if(!quantity || !quantity || isNaN(quantity)) return res.status(409).json({status: 409, error: "Quantity must be a numbers!!"});
+    
     const liquorsRatings = await Liquor_rating.findAll({
       order: [["liquor_id", "DESC"]],
     });
-    if(!liquorsRatings || liquorsRatings.length === 0) return res.status(404).json({status: 404, error: "There aren't any reviews yet!!"});
+    
+    if(!liquorsRatings || liquorsRatings.length === 0) {
+      const someLiquors = await Liquor.findAll({ limit: quantity });
+      if(!someLiquors || someLiquors.length === 0) return res.status(404).json({status: 404, error: "Liquors not found!"});
+      return res.status(200).json({status: 200, message:"No Liquors have been rated, sending some liquors!"});
+    }
+    
     const averageLiquors = calcularPromedioPuntuacionLiquor(liquorsRatings);
     const auxLiquors = averageLiquors.slice(0, quantity)
     const bestLiquors = [];
+    
     for (let i = 0; i < auxLiquors.length; i++) {
       let findLiquor = await Liquor.findByPk(auxLiquors[i].liquor_id)
       bestLiquors.push(findLiquor)
