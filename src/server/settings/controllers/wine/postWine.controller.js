@@ -21,7 +21,7 @@ const postWine = async (req, res) => {
     //user ID
     const { id } = req.query;
     //Product data
-    const { name, description, price, stock, picture, wineCategoryId } = req.body;
+    const { name, description, price, stock, picture, id_picture, wineCategoryId } = req.body;
     try {
         //Valid if the id comes from the query
         if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The id field is required" });
@@ -55,6 +55,7 @@ const postWine = async (req, res) => {
             price,
             stock,
             picture,
+            id_picture,
             Wine_categoryId: wineCategoryId
         });
         
