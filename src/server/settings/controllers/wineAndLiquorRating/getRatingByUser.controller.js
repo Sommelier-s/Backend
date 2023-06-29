@@ -6,24 +6,24 @@ function esUUID(id) {
 }
 
 const getCommentsByProduct = async (req, res) => {
-    const { userId } = req.params;
+    const { id } = req.params;
     let response = ""
     try {
         //Valid if the id is correct
-        if (userId === "") return res.status(400).json({ status: 400, error: "The product id field is empty" });
-        if (!esUUID(userId)) return res.status(409).json({ status: 409, error: "The product id field has no UUID structure" });
+        if (id === "") return res.status(400).json({ status: 400, error: "The product id field is empty" });
+        if (!esUUID(id)) return res.status(409).json({ status: 409, error: "The product id field has no UUID structure" });
 
         const liquorComments = await Liquor_rating.findAll({
             where: {
-                user_id: userId
+                user_id: id
             },
-            attributes: ['comment']
+            attributes: ['comment', 'puntuation']
         });
         const wineComments = await Wine_rating.findAll({
             where: {
-                user_id: userId
+                user_id: id
             },
-            attributes: ['comment']
+            attributes: ['comment', 'puntuation']
         });
         console.log(wineComments);
         if ((!wineComments || wineComments.length === 0) && (!liquorComments || liquorComments.length === 0))
