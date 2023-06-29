@@ -21,7 +21,7 @@ const postLiquor = async (req, res) => {
     // user id
     const { id } = req.query;
     // product data
-    const { name, description, price, stock, picture, graduation, liquorCategoryId } = req.body;
+    const { name, description, price, stock, picture, id_picture, graduation, liquorCategoryId } = req.body;
 
     try {
         //Valid if the id comes from the query
@@ -56,6 +56,7 @@ const postLiquor = async (req, res) => {
             price,
             stock,
             picture,
+            id_picture,
             graduation,
             Liquor_categoryId: liquorCategoryId,
             isActive: true,

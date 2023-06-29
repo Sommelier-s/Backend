@@ -21,6 +21,9 @@ const Wine_rating = sequelize.define(
     },
     wine_id: {
       type: DataTypes.STRING(),
+    },
+    comment: {
+      type: DataTypes.TEXT
     }
   },
   {

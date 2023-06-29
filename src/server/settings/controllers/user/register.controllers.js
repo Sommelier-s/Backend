@@ -7,7 +7,7 @@ const { emailRegistro } = require("../../helper/user/email");
 const registroUser = async (req, res) => {
   try {
     // Obtener los datos que llegan en el cuerpo de la solicitud
-    const { first_name, last_name, date_birth, email, password } = req.body;
+    const { first_name, last_name, date_birth, email, password, is_Admin } = req.body;
 
     // Validar que el usuario tenga más de 18 años
     let fechaNacimiento = new Date(date_birth);
@@ -50,6 +50,7 @@ const registroUser = async (req, res) => {
       date_birth,
       email,
       password: hashedPassword,
+      is_Admin
     });
 
     // Generar el token
