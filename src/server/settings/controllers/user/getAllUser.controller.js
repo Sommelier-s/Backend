@@ -4,7 +4,6 @@ const User = require("../../../../database/model/user.model");
 const getAllUser = async (req, res) => {
     try {
         const users = await User.findAll()
-        if (!users) {
 
         if (!users || users.length === 0) {
 
