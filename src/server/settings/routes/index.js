@@ -20,7 +20,7 @@ routes.use("/ratingLiquors", require("./WineAndLiquorRatingRoutes/liquorRatingRo
 routes.use("/cloudinary", require("./ClourdinaryRoutes/Cloudinary.route"));
 routes.use('/offer', require('./OfferRoutes/offerRoutes'));
 routes.use('/rating', require('./WineAndLiquorRatingRoutes/wineAndLiquorRatingRoutes'));
-
+routes.use("/cart", require("./CartRoutes/cartRoutes"));
 
 
 module.exports = routes;
