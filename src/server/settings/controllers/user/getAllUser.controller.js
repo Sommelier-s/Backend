@@ -4,7 +4,7 @@ const User = require("../../../../database/model/user.model");
 const getAllUser = async (req, res) => {
     try {
         const users = await User.findAll()
-        if (!users) {
+        
 
         if (!users || users.length === 0) {
 
@@ -15,5 +15,3 @@ const getAllUser = async (req, res) => {
         return res.status(500).json({ status: 500, error: error.message })
     }
 }
-
-module.exports = getAllUser;

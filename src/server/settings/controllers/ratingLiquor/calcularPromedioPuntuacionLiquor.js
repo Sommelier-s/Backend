@@ -4,13 +4,13 @@ function calcularPromedioPuntuacionLiquor(arr) {
   
 //?? Iterar sobre el array y calcular la suma de puntuaciones y el total de reviews por producto
     arr.forEach((liquor) => {
-      const { puntuation, liquor_id } = liquor;
+      const { rating, liquor_id } = liquor;
     // Si ya existe la propiedad dentro de promedios que lleve el nombre de lo que se recibe por liquor_id, 
     // entonces se suma la puntuacion a la puntacion total y se aumenta en 1 la cantidad de reviews
     // (osea la cantidad de personas que votaron el producto). 
     // Esto se hace para luego sacar el promedio.
       if (promedios.hasOwnProperty(liquor_id)) {
-        promedios[liquor_id].totalPuntuation += puntuation;
+        promedios[liquor_id].totalRating += rating;
         promedios[liquor_id].totalReviews += 1;
       } else {
         /*{
@@ -37,7 +37,7 @@ function calcularPromedioPuntuacionLiquor(arr) {
     // propiedad puntation del primer objeto que no se repita) y totalReviews (cuyo valor inical sera 1 ya 
     // que es el primer producto que no se repite)  
         promedios[liquor_id] = {
-          totalPuntuation: puntuation,
+          totalRating: rating,
           totalReviews: 1,
         };
       }
@@ -45,8 +45,8 @@ function calcularPromedioPuntuacionLiquor(arr) {
   
 //?? Calcular el promedio de puntuación por producto
     const promediosArray = Object.keys(promedios).map((liquor_id) => {
-      const { totalPuntuation, totalReviews } = promedios[liquor_id];
-      const promedio = Math.round(totalPuntuation / totalReviews);
+      const { totalRating, totalReviews } = promedios[liquor_id];
+      const promedio = Math.round(totalRating / totalReviews);
   
       return {
         liquor_id,

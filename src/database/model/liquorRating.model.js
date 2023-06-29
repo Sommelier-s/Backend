@@ -13,7 +13,7 @@ const Liquor_rating = sequelize.define(
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
     },
-    puntuation: {
+    rating: {
         type: DataTypes.INTEGER(),
     },
     user_id: {

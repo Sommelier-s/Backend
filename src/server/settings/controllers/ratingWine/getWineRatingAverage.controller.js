@@ -6,12 +6,12 @@ function esUUID(id) {
 }
 
 const ratingAverage = async (arr) => {
-    const allPuntuationsArr = arr.map((ratings) =>{return ratings.puntuation});
+    const allRatingsArr = arr.map((ratings) =>{return ratings.rating});
     let auxiliar = 0;
-    for (let i = 0; i < allPuntuationsArr.length; i++) {
-        auxiliar = auxiliar + allPuntuationsArr[i]
+    for (let i = 0; i < allRatingsArr.length; i++) {
+        auxiliar = auxiliar + allRatingsArr[i]
     };
-    productAverage = Math.floor(auxiliar / allPuntuationsArr.length)
+    productAverage = Math.floor(auxiliar / allRatingsArr.length)
     return productAverage;
 }
 

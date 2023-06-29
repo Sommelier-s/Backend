@@ -15,11 +15,11 @@ function validateFields(idp, punt) {
 
 const putWineRating = async (req, res) => {
     const { id } = req.query;
-    const { productId, puntuation } = req.body;
+    const { productId, rating } = req.body;
 
     try {
         //Valid that the fields are valid.
-        if (!validateFields(productId, puntuation)) return res.status(409).json({ status: 409, error: "Some fields are missing or wrong! hahaha" });
+        if (!validateFields(productId, rating)) return res.status(409).json({ status: 409, error: "Some fields are missing or wrong! hahaha" });
         
         //Valid if the id comes from the query
         if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The id field is required" });
@@ -38,7 +38,7 @@ const putWineRating = async (req, res) => {
 
         const review = await Wine_rating.findOne({ where: { wine_id: productId, user_id: id}})
         await review.update({
-            puntuation: puntuation,
+            rating,
         });
         review.save();
         res.status(200).json({ status: 200, message: "The raiting has been updated successfully!", data: review });

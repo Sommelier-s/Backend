@@ -20,6 +20,7 @@ routes.use("/ratingWines", require("./WineAndLiquorRatingRoutes/wineRatingRoute"
 routes.use("/ratingLiquors", require("./WineAndLiquorRatingRoutes/liquorRatingRoute"));
 routes.use("/cloudinary", require("./ClourdinaryRoutes/Cloudinary.route"));
 routes.use('/offer', require('./OfferRoutes/offerRoutes'));
+routes.use('/allRatings', require('./WineAndLiquorRatingRoutes/wineAndLiquorRatingsAndCommentsRoutes'));
 
 
 
