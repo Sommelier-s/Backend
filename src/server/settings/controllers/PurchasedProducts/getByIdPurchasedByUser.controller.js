@@ -7,7 +7,7 @@ function esUUID(id) {
 }
 
 const getPurchasedProductsById = async (req, res) => {
-  const { client_id } = req.body;
+  const { client_id } = req.params;
   
   try {
     // Validate if the id is correct
