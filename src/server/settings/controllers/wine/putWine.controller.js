@@ -5,10 +5,23 @@ function esUUID(id) {
     return uuidPattern.test(id);
 }
 
+require("dotenv").config();
+const { APY_KEY_CLOUDINARY,
+    NAME_CLOUDINARY,
+    SECRET_KEY_CLOUDINARY } = process.env;
+
+const cloudinary = require('cloudinary');
+
+cloudinary.config({
+    cloud_name: NAME_CLOUDINARY,
+    api_key: APY_KEY_CLOUDINARY,
+    api_secret: SECRET_KEY_CLOUDINARY
+});
+
 const putWine = async (req, res) => {
     const { userId } = req.query;
     const { id } = req.params;
-    const { name, description, price, stock, picture, isActive } = req.body;
+    const { description, price, stock, picture, id_picture, isActive, category } = req.body;
 
     try {
         //Valid if the user id comes from the query
@@ -24,23 +37,28 @@ const putWine = async (req, res) => {
         //Valid if the user is an administrator
         if (user.is_Admin === false) return res.status(401).json({ status: 401, error: "User is not an administrator" });
 
-        if (name) {
-            const allWines = await Wine.findAll();
-            const products = allWines.filter((wine) => wine.name.toLowerCase() === name.toLowerCase());
-            if (products.length !== 0) return res.status(400).json({ status: 400, error: "One product already has that name" });
-        }
+        // if (name) {
+        //     const allWines = await Wine.findAll();
+        //     const products = allWines.filter((wine) => wine.name.toLowerCase() === name.toLowerCase());
+        //     if (products.length !== 0) return res.status(400).json({ status: 400, error: "One product already has that name" });
+        // }
         //If the product does exists returns an error.
         const product = await Wine.findByPk(id);
         if (!product) return res.status(400).json({ status: 400, error: "The product does exist" });
+        if (id_picture) {
+            await cloudinary.uploader.destroy(product.id_picture);
+        }
 
         //I set the product
         product.update({
-            name,
+
             description,
             price,
             stock,
             picture,
-            isActive
+            id_picture,
+            isActive,
+            
         });
 
         //I return the product data modified
