@@ -37,7 +37,7 @@ const postLiquorRating = async (req, res) => {
         const product = await Liquor.findByPk(productId);
         if(!product) res.status(404).json({ status: 404, error: "the product does not exist!" });
         //validate if the user has already voted this product for the first time
-        const validateVote = await Wine_rating.findOne({ where: {user_id: id, liquor_id: productId}});
+        const validateVote = await Liquor_rating.findOne({ where: {user_id: id, liquor_id: productId}});
         if(validateVote) return res.status(400).json({ status: 400, error: "The user already voted this product for the first time!!" });
         
         const addRating = await Liquor_rating.create({
