@@ -9,6 +9,7 @@ const Liquor_rating = require('./liquorRating.model');
 const Wine_rating = require('./wineRating.model');
 const Offer = require('./offer.model');
 const Cart = require('./cart.model');
+const Shipment = require('./shipment.model')
 
 Wine_category.hasMany(Wine, { foreignKey:"Wine_categoryId"});
 Wine.belongsTo(Wine_category, { foreignKey:"Wine_categoryId"});
@@ -28,5 +29,6 @@ module.exports = {
     Liquor_rating, 
     Offer,
     Cart,
+    Shipment
 }
 
