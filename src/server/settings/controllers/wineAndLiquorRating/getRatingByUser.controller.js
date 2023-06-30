@@ -17,13 +17,13 @@ const getCommentsByProduct = async (req, res) => {
             where: {
                 user_id: id
             },
-            attributes: ['comment', 'puntuation']
+            attributes: ['comment', 'puntuation', 'liquor_id']
         });
         const wineComments = await Wine_rating.findAll({
             where: {
                 user_id: id
             },
-            attributes: ['comment', 'puntuation']
+            attributes: ['comment', 'puntuation', 'wine_id']
         });
         console.log(wineComments);
         if ((!wineComments || wineComments.length === 0) && (!liquorComments || liquorComments.length === 0))
