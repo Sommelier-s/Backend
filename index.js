@@ -23,7 +23,6 @@ function main() {
         } else {
             console.log(`server listening on https://server-sommeliers.onrender.com:${PORT}`);
         }
-
     });
 }
 
