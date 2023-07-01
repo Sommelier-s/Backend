@@ -4,7 +4,7 @@ const User = require("../../../../database/model/user.model");
 const getAllUser = async(req, res) => { 
     try {
         const users = await User.findAll({
-            attributes:['id','first_name','last_name','profile_picture', 'email', 'date_birth']
+            attributes:['id','first_name','last_name','profile_picture', 'email', 'date_birth', 'is_Admin']
         })
         if(!users){
             return res.status(404).json({ msg: 'no users' })

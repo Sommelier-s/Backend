@@ -17,6 +17,7 @@ function main() {
     app.listen(PORT, async () => {
         // Data Syncronization.
         await sequelize.sync({ force: false});
+
         // Listening Verify.
         console.log(`server listening on http://localhost:${PORT}`);
 

@@ -1,6 +1,5 @@
 // Third Party Dependencies.
 const { Router } = require("express");
-const passport = require("passport");
 // Local Dependencies.
 // const verifyToken = require("../middleware/user/jwt");
 const registroUser = require("../../controllers/user/register.controllers");
@@ -20,8 +19,6 @@ const googlelogin = require("../../controllers/user/googleLogin.controllers");
 // Router Instance.
 const userRoutes = Router();
 
-const CLIENT_URL = "http://localhost:3000/";
-
 // Register Users.
 userRoutes.post("/register", registroUser);
 // Start section after registration
@@ -30,34 +27,9 @@ userRoutes.post("/login", login);
 userRoutes.get("/confirmar/:token", confirmar);
 
 // Authenticate with google login
-// userRoutes.post("/googlelogin",  googlelogin);
+userRoutes.post("/googlelogin",  googlelogin);
+
 userRoutes.get("/login/success", googlelogin);
-
-userRoutes.get("/login/failed", (req, res) => {
-  res.status(401).json({
-    success: false,
-    message: "failure",
-  });
-});
-
-userRoutes.get("/logout", (req, res) => {
-  const data = (req.user = null);
-  console.log(data);
-  res.redirect(CLIENT_URL);
-});
-
-userRoutes.get(
-  "/google",
-  passport.authenticate("google", { scope: ["profile"] })
-);
-
-userRoutes.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    successRedirect: CLIENT_URL,
-    failureRedirect: "/login/failed",
-  })
-);
 
 // Password recovery send email for recovery
 userRoutes.post("/olvide-password", olvidePasswordUser);
