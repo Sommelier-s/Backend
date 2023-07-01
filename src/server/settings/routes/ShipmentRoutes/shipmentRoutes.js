@@ -11,6 +11,6 @@ router.get('/pending', getPendingShipment)
 router.get('/realized', getRealizedShipment)
 router.get('/:id', getShipmentByid)
 router.post('/', postShipment)
-router.put('/', putShipment)
+router.put('/:id', putShipment)
 
 module.exports = router;
