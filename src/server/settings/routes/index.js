@@ -21,7 +21,7 @@ routes.use("/cloudinary", require("./ClourdinaryRoutes/Cloudinary.route"));
 routes.use('/offer', require('./OfferRoutes/offerRoutes'));
 routes.use('/rating', require('./WineAndLiquorRatingRoutes/wineAndLiquorRatingRoutes'));
 routes.use("/cart", require("./CartRoutes/cartRoutes"));
-routes.use('/shopment'. require('./'))
+routes.use('/delivery', require('./ShipmentRoutes/shipmentRoutes'));
 
 
 module.exports = routes;
