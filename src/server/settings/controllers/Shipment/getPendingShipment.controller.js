@@ -3,9 +3,8 @@ const { Shipment } = require('../../../../database/model/relationships');
 const getPendingShipment = async (req, res) => {
 
     try {
-        //if (!esUUID(id)) return res.status(409).json({ status: 409, messasge: 'Invalid id structure' });
 
-        const response = Shipment.findAll({
+        const response = await Shipment.findAll({
             where: {
                 pending: true
             }
@@ -19,4 +18,4 @@ const getPendingShipment = async (req, res) => {
     }
 }
 
-module.exports =getPendingShipment;
+module.exports = getPendingShipment;

@@ -21,10 +21,10 @@ const putShipment = async (req, res) => {
         if (!shipment) return res.status(404).json({ status: 404, message: 'Shipment does exist' });
         //Valid user id
         if (!esUUID(userId)) return res.status(409).json({ status: 409, message: 'Invalid is structure' });
-        const user = await User.findByPk(id);
+        const user = await User.findByPk(userId);
         if (!user) return res.status(404).json({ status: 404, message: 'User does exist' });
-        if (!user.isAdmin) return res.status(401).json({ status: 401, message: 'Unauthorized user' });
-        
+        if (!user.is_Admin) return res.status(401).json({ status: 401, message: 'Unauthorized user' });
+
         //Update shipment status
         if (shipment.pending === true) {
             shipment.update({
