@@ -8,7 +8,7 @@ function esUUID(id) {
 
 
 
-const getShipmentById = async (res, res) => {
+const getShipmentById = async (req, res) => {
 
     const { id } = req.params;
 
