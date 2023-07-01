@@ -37,7 +37,7 @@ const googlelogin = async (req, res) => {
                 // We save the user in the database
                 user = await newUser.save();
             }
-
+  //
             // We show the authenticated user
             res.json({
               id: user.id,
