@@ -11,7 +11,7 @@ const deleteOffer = async (req, res) => {
     //Product id
     const { id } = req.params;
     //User id
-    const { userId} = req.query;
+    const { userId } = req.query;
 
 
     try {

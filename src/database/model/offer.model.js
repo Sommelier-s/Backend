@@ -14,6 +14,9 @@ const Offer = sequelize.define(
             type: DataTypes.UUID,
             unique: true
         },
+        image: {
+            type: DataTypes.STRING()
+        },
         product_name:{
             type: DataTypes.STRING(),
         },

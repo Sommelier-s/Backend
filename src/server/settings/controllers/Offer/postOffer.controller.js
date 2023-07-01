@@ -21,6 +21,7 @@ const postOffer = async (req, res) => {
     
     const finalDiscount = (100 - discount) / 100;
     let productName = "";
+    let image = '';
 
     try {
         if (!validateFields(req.body)) return res.status(409).json({ status: 409, message: 'Invalid fields' });
@@ -35,16 +36,19 @@ const postOffer = async (req, res) => {
         if (!liquor && !wine) return res.status(404).json({ status: 404, message: 'Product not found' });
         if (liquor) {
             productName = liquor.name;
+            image = liquor.picture
             price = liquor.price * finalDiscount;
         } else {
             productName = wine.name;
+            image = wine.picture
             price = wine.price * finalDiscount;
         }
         const response = await Offer.create({
             product_id: productId,
             product_name: productName,
             discount,
-            price
+            price,
+            image
         })
         return res.status(200).json({ status: 200, message: 'Offer created', data: response });
     } catch (error) {

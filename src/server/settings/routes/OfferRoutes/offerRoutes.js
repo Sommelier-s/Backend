@@ -9,11 +9,11 @@ const getOfferByName = require('../../controllers/Offer/getOfferByName.controlle
 const router = Router();
 
 
+router.post('/', postOffer);
 router.get('/', getOffer);
 router.get('/search', getOfferByName);
 router.get('/:id', getOfferById);
-router.post('/', postOffer);
 router.put('/:id', putOffer);
-router.delete('/', deleteOffer);
+router.delete('/:id', deleteOffer);
 
 module.exports = router;
