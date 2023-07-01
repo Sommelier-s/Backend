@@ -31,8 +31,9 @@ const getCommentsByProduct = async (req, res) => {
 
         if (wineComments.length > 0) { response = wineComments }
         if (liquorComments.length > 0) { response = liquorComments }
+        let getAll = wineComments.concat(liquorComments)
 
-        return res.status(200).json({ status: 200, message: 'Comment found', data: response })
+        return res.status(200).json({ status: 200, message: 'Comment found', data: getAll })
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message });
     }

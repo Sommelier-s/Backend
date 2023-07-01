@@ -24,7 +24,7 @@ const putCart = async (req, res) => {
         
         await findCart.update({
             user_id: id,
-            cart: Cart,
+            cart: cart,
             amount: amount,
         })
         
