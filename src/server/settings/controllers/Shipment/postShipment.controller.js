@@ -8,12 +8,12 @@ function esUUID(id) {
 
 //Function that validates all the fields of body
 function validateFields({
-    userId,
+    user_id,
     cart,
     amount,
     firstName,
     lastName,
-    postalCode,
+    postal_code,
     province,
     city,
     address,
@@ -29,24 +29,23 @@ function validateFields({
     if (!address || address === "") return false;
     if (!province || province === "") return false;
     if (!amount || isNaN(amount)) return false;
-    if (!apartment || isNaN(apartment)) return false;
     if (!phone || isNaN(phone)) return false;
-    if (!postalCode || isNaN(postalCode)) return false;
+    if (!postal_code || isNaN(postal_code)) return false;
     if (!number || isNaN(number)) return false;
-    if (!userId || userId === "" || !esUUID(userId)) return false;
+    if (!user_id || user_id === "" || !esUUID(user_id)) return false;
     return true;
 }
 
 
 const postShipment = async (req, res) => {
 
-    const {
-        userId,
+    let {
+        user_id,
         cart,
         amount,
         firstName,
         lastName,
-        postalCode,
+        postal_code,
         province,
         city,
         address,
@@ -60,17 +59,24 @@ const postShipment = async (req, res) => {
         //Valid fields
         if (!validateFields(req.body)) return res.status(409).json({ status: 409, message: 'Invalid fields' });
         //Valid if the user exist
-        const user = await User.findByPk(userId);
+
+        const user = await User.findByPk(user_id);
         if (!user) return res.status(404).json({ status: 404, message: 'User does exist' });
+
         //Concat first name and last name
         const clientName = firstName.concat(' ', lastName);
         //Create the shipment
-        const response = await Delivery.create({
-            userId,
+
+        if (apartment == "") {
+            apartment = 0;
+        }
+
+        const response = await Shipment.create({
+            user_id,
             cart,
             amount,
             name: clientName,
-            postalCode,
+            postal_code,
             province,
             city,
             address,
