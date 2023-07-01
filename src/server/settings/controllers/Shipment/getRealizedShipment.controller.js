@@ -3,7 +3,7 @@ const { Shipment } = require('../../../../database/model/relationships');
 const getRealizedShipment = async (req, res) => {
 
     try {
-        if (!esUUID(id)) return res.status(409).json({ status: 409, messasge: 'Invalid id structure' });
+        //if (!esUUID(id)) return res.status(409).json({ status: 409, messasge: 'Invalid id structure' });
 
         const response = Shipment.findAll({
             where: {
@@ -19,4 +19,4 @@ const getRealizedShipment = async (req, res) => {
     }
 }
 
-module.exports =getRealizedShipment;
+module.exports = getRealizedShipment;
