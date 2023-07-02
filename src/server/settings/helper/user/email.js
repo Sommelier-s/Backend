@@ -48,7 +48,7 @@ const emailOlvidePassword = async (datos) => {
       text: 'Restablece tu Contraseña',
       html:`<P>Hola: ${first_name} has solicitado reestablecer tu contraseña en Sommelier</P>
       <p>Sigue el siguinete enlace para generar un nueva contraseña:</p>
-      <a href="${process.env.BACKEND_URL}/olvide-password/${token}">Reestablecer Contraseña</a>
+      <a href="${process.env.BACKEND_URL}/reset_password_two/${token}">Reestablecer Contraseña</a>
       <p>Si tu no solicitaste este email, puedes ignorar el mensaje</p>
       `
     })
