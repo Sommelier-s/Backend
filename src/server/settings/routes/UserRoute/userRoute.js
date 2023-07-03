@@ -46,7 +46,7 @@ userRoutes.get("/user", getAllUser)
 //getID user account
 userRoutes.get("/user/:id", verifyToken, admin, getUserById);
 //update user account
-userRoutes.put("/update-user/:id", verifyToken, admin, updateUser);
+userRoutes.put("/update-user/:id",updateUser);
 // delete user account
 userRoutes.delete("/delete-user/:id", verifyToken, admin, deleteUser);
 
