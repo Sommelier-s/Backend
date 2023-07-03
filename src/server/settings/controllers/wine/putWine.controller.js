@@ -21,7 +21,7 @@ cloudinary.config({
 const putWine = async (req, res) => {
     const { userId } = req.query;
     const { id } = req.params;
-    const { description, price, stock, picture, id_picture, isActive, category } = req.body;
+    const { description, price, stock, picture, id_picture, isActive, is_product_month } = req.body;
 
     try {
         //Valid if the user id comes from the query
@@ -58,7 +58,7 @@ const putWine = async (req, res) => {
             picture,
             id_picture,
             isActive,
-            
+            is_product_month,
         });
 
         //I return the product data modified
