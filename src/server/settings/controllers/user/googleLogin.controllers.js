@@ -33,20 +33,22 @@ const googlelogin = async (req, res) => {
                     token: "",
                     createGoogle: true,
                     accountConfirmed: true,
+
                 });
                 // We save the user in the database
                 user = await newUser.save();
             }
-  //
+            //
             // We show the authenticated user
             res.json({
-              id: user.id,
-              first_name: user.first_name,
-              last_name: user.last_name,
-              date_birth: user.date_birth,
-              email: user.email,
-              token: generarJWT(user.id),
-              profile_picture:user.profile_picture
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                date_birth: user.date_birth,
+                email: user.email,
+                token: generarJWT(user.id),
+                profile_picture: user.profile_picture,
+                isAdmin: user.is_Admin,
             })
         } else {
             return res.status(400).json({ error: "Invalid email" });
