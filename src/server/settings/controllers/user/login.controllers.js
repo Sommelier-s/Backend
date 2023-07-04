@@ -12,10 +12,10 @@ const login = async (req, res) => {
         // We look for the user by email
         const user = await User.findOne({ where: { email: email } });
         // We verify that it does not exist
-        if (!user) return res.status(404).json({ status: 404, error: "User not exist" })
+        if (!user) return res.status(404).json({ status: 404, error: "El usuario no existe" })
         // We compare the database password with the one the user sends us
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(404).json({ status: 404, error: "Password incorrect" })
+        if (!isMatch) return res.status(404).json({ status: 404, error: "Contraseña incorrecta" })
         // We confirm that they are correct
         if (!user.accountConfirmed) {
             const error = new Error('Tu usuario no ha sido confirmado')

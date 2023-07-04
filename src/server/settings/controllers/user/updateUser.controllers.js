@@ -22,7 +22,7 @@ const updateUser = async (req, res) => {
 
         const user = await User.findByPk(id)
         if (!user) {
-            return res.status(404).json({ status: 404, error: 'User not found' })
+            return res.status(404).json({ status: 404, error: 'Usuario no encontrado' })
         }
 
         if (id_picture && id_picture !== "usersPictures/vjnwieyjnhslptbgtwcs") {
@@ -30,7 +30,7 @@ const updateUser = async (req, res) => {
             await cloudinary.uploader.destroy(user.id_picture);
         }
 
-        
+
         user.first_name = first_name || user.first_name;
         user.last_name = last_name || user.last_name;
         user.date_birth = date_birth || user.date_birth;
@@ -38,7 +38,7 @@ const updateUser = async (req, res) => {
         user.id_picture = id_picture || user.id_picture;
         user.email = email || user.email;
         await user.save();
-        res.status(200).json({ status: 200, message: "Updated successfully" })
+        res.status(200).json({ status: 200, message: "Usuario actualizado correctamente" })
 
     } catch (error) {
         return res.status(500).json({ status: 500, error })

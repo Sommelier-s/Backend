@@ -7,7 +7,7 @@ const getAllUser = async (req, res) => {
 
             if (!users || users.length === 0) {
 
-                return res.status(404).json({ status: 404, error: 'no users' })
+                return res.status(404).json({ status: 404, error: 'No hay usuarios' })
             }
             return res.json(users);
     } catch (error) {

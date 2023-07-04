@@ -21,7 +21,7 @@ const registroUser = async (req, res) => {
     if (edad < 18) {
       return res.status(406).json({
         status: 406,
-        error: "You must be over 18 years old to register",
+        error: "Debe tener más de 18 años para registrarte",
       });
     }
 
@@ -36,7 +36,7 @@ const registroUser = async (req, res) => {
     if (emailVerify) {
       return res.status(406).json({
         status: 406,
-        error: "Email already exists",
+        error: "El email ya existe",
       });
     }
 

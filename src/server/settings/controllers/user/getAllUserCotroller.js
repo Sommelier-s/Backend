@@ -7,7 +7,7 @@ const getAllUser = async(req, res) => {
             attributes:['id','first_name','last_name','profile_picture', 'email', 'date_birth', 'is_Admin']
         })
         if(!users){
-            return res.status(404).json({ msg: 'no users' })
+            return res.status(404).json({ msg: 'No hay usuarios' })
         }
         return res.json(users);
     } catch (error) {

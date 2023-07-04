@@ -8,7 +8,7 @@ const confirmar = async (req, res) => {
     const usuarioConfirmar = await User.findOne({ where: { token } })
     // We validate that it is not used
     if (!usuarioConfirmar) {
-        const error = new Error('invalid token')
+        const error = new Error('Token inválido')
         return res.status(403).json({ status: 403, error: error.message })
     }
 

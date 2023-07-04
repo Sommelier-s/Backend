@@ -8,10 +8,10 @@ const comprobarToken = async (req, res) => {
     const usuarioConfirmar = await User.findOne({ where: { token } })
     // We validate that it is not used
     if (!usuarioConfirmar) {
-        const error = new Error('Token no valido')
+        const error = new Error('Token no válido')
         return res.status(403).json({ status: 403, error: error.message })
     }
-    res.status(200).json({ status: 200, message: 'Token valido' })
+    res.status(200).json({ status: 200, message: 'Token válido' })
 }
 
 
