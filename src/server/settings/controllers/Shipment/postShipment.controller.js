@@ -86,7 +86,7 @@ const postShipment = async (req, res) => {
             phone
         })
 
-        return res.status(200).json({ status: 200, message: 'Delivery successfully created', data: response })
+        return res.status(201).json({ status: 201, message: 'Delivery successfully created', data: response })
 
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message });
