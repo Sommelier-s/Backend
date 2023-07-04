@@ -22,7 +22,7 @@ const olvidePasswordUser = async (req, res) => {
         await user.save();
         // Email sent with instructions for email recovery
         emailOlvidePassword(user)
-        res.status(200).json({ status: 200, message: 'We have sent an email with the instructions' })
+        res.status(200).json({ status: 200, message: 'Hemos enviado un correo electrónico con las instrucciones' })
     } catch (error) {
         return res.status(403).json({ error: error.message })
     }

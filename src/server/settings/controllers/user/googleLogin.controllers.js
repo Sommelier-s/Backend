@@ -51,11 +51,11 @@ const googlelogin = async (req, res) => {
                 isAdmin: user.is_Admin,
             })
         } else {
-            return res.status(400).json({ error: "Invalid email" });
+            return res.status(400).json({ error: "Email inválido" });
         }
     } catch (error) {
         console.log(error);
-        res.status(400).json({ error: "Something went wrong..." });
+        res.status(400).json({ error: "Algo salió mal..." });
     }
 };
 

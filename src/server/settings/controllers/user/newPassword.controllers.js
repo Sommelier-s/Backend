@@ -19,7 +19,7 @@ const nuevoPassword = async (req, res) => {
     try {
         // We save the user's changes
         await user.save();
-        res.status(200).json({ status: 200, message: 'Password changed successfully' })
+        res.status(200).json({ status: 200, message: 'La contraseña se cambio con éxito' })
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }

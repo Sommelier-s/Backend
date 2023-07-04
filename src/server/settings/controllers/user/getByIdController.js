@@ -10,7 +10,7 @@ const getUserById = async(req, res) => {
             attributes:['id','first_name','last_name','profile_picture', 'email', 'date_birth']
         });
         if(!user){
-            return res.status(404).json({ msg: 'user not found' })
+            return res.status(404).json({ msg: 'Usuario no encontrado' })
         }
         return res.json(user);
     } catch (error) {
