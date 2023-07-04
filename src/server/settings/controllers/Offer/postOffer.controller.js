@@ -19,14 +19,17 @@ const postOffer = async (req, res) => {
     const { id } = req.query;
     const { productId, discount } = req.body;
     
-    const finalDiscount = (100 - discount) / 100;
     let productName = "";
     let image = '';
-
+    
     try {
         if (!validateFields(req.body)) return res.status(409).json({ status: 409, message: 'Invalid fields' });
         if (!esUUID(id)) return res.status(409).json({ status: 409, message: 'Invalid id structure' });
-
+        
+        if (discount > 99 || discount < 1) return res.status(409).json({ status: 409, message: 'Discount have to be between 1 and 100'})
+        
+        const finalDiscount = Math.round((100 - discount) / 100);
+        
         const user = await User.findByPk(id);
         if (!user) return res.status(404).json({ status: 404, message: 'User does exist' });
         if (!user.is_Admin) return res.status(401).json({ status: 401, messgae: 'Access denied' });
@@ -50,7 +53,7 @@ const postOffer = async (req, res) => {
             price,
             image
         })
-        return res.status(200).json({ status: 200, message: 'Offer created', data: response });
+        return res.status(201).json({ status: 201, message: 'Offer created', data: response });
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message });
     }
