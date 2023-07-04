@@ -24,7 +24,7 @@ const Offer = sequelize.define(
             type: DataTypes.INTEGER()
         },
         price: {
-            type: DataTypes.INTEGER()
+            type: DataTypes.FLOAT()
         }
     }
 );

@@ -21,15 +21,15 @@ const postOffer = async (req, res) => {
     
     let productName = "";
     let image = '';
+    let price = "";
     
     try {
         if (!validateFields(req.body)) return res.status(409).json({ status: 409, message: 'Invalid fields' });
         if (!esUUID(id)) return res.status(409).json({ status: 409, message: 'Invalid id structure' });
         
         if (discount > 99 || discount < 1) return res.status(409).json({ status: 409, message: 'Discount have to be between 1 and 100'})
-        
-        const finalDiscount = Math.round((100 - discount) / 100);
-        
+        const finalDiscount = (100 - discount) / 100;
+
         const user = await User.findByPk(id);
         if (!user) return res.status(404).json({ status: 404, message: 'User does exist' });
         if (!user.is_Admin) return res.status(401).json({ status: 401, messgae: 'Access denied' });
