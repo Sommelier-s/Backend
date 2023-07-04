@@ -23,7 +23,7 @@ const PutLiquor = async (req, res) => {
 
     const { userId } = req.query;
 
-    const { description, price, stock, picture, id_picture, graduation, category, isActive } = req.body;
+    const { description, price, stock, picture, id_picture, graduation, is_product_month, isActive } = req.body;
 
     try {
         //Valid if the user id comes from the query
@@ -56,7 +56,7 @@ const PutLiquor = async (req, res) => {
             id_picture,
             graduation,
             isActive,
-
+            is_product_month
         });
         await product.save();
         //I return the product data modified
