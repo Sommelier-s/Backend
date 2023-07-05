@@ -16,7 +16,7 @@ function main() {
     // Put the Server to Listen.
     app.listen(PORT, async () => {
         // Data Syncronization.
-        await sequelize.sync({ force: true });
+        await sequelize.sync({ force: false });
         if (process.env.DEBUG === "true") {
             // Listening Verify.
             console.log(`server listening on http://localhost:${PORT}`);
