@@ -56,12 +56,13 @@ const postShipment = async (req, res) => {
     } = req.body;
 
     try {
+        console.log(cart);
         //Valid fields
-        if (!validateFields(req.body)) return res.status(409).json({ status: 409, message: 'Invalid fields' });
+        if (!validateFields(req.body)) return res.status(409).json({ status: 409, message: 'Campos inválidos' });
         //Valid if the user exist
 
         const user = await User.findByPk(user_id);
-        if (!user) return res.status(404).json({ status: 404, message: 'User does exist' });
+        if (!user) return res.status(404).json({ status: 404, message: 'No existe el usuario' });
 
         //Concat first name and last name
         const clientName = firstName.concat(' ', lastName);
@@ -86,7 +87,7 @@ const postShipment = async (req, res) => {
             phone
         })
 
-        return res.status(201).json({ status: 201, message: 'Delivery successfully created', data: response })
+        return res.status(201).json({ status: 201, message: 'Se ha guardado el envio correctemente', data: response })
 
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message });
