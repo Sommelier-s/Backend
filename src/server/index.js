@@ -15,10 +15,13 @@ app.use(express.json());
 // Morgan.
 app.use(morgan("dev"));
 
+const desarrolloApp = "http://localhost:3000";
+const produccionApp = "backend-production-22db.up.railway.app"
+
 // Cors.
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: produccionApp,
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
