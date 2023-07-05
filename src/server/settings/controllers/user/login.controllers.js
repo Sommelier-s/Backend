@@ -32,7 +32,8 @@ const login = async (req, res) => {
                 email: user.email,
                 token: generarJWT(user.id),
                 profile_picture: user.profile_picture,
-                isAdmin:user.is_Admin
+                isAdmin: user.is_Admin,
+                isActive: user.isActive,
             }
         })
     } catch (error) {

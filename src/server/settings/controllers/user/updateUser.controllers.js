@@ -1,4 +1,5 @@
 const User = require("../../../../database/model/user.model");
+const { sendBannedEmail, sendUnbanEmail, sendEmailForJobPromotionEmail, sendUnsubscribeEmail } = require("../../helper/user/email");
 
 require("dotenv").config();
 const { APY_KEY_CLOUDINARY,
@@ -17,7 +18,8 @@ cloudinary.config({
 // update user
 const updateUser = async (req, res) => {
     const { id } = req.params;
-    const { first_name, last_name, profile_picture, id_picture, email, date_birth } = req.body;
+    const { name, profile_picture, id_picture, email, isActive, is_Admin, date_birth } = req.body;
+
     try {
 
         const user = await User.findByPk(id)
@@ -26,18 +28,61 @@ const updateUser = async (req, res) => {
         }
 
         if (id_picture && id_picture !== "usersPictures/vjnwieyjnhslptbgtwcs") {
-            console.log("entro a eliminar la imagen")
             await cloudinary.uploader.destroy(user.id_picture);
         }
 
+        if (is_Admin != undefined) {
+            if (is_Admin) {
+                await sendEmailForJobPromotionEmail({ email, name });
+                return await user.update({
+                    profile_picture,
+                    id_picture,
+                    isActive,
+                    is_Admin
+                })
+            } else {
+                await sendUnsubscribeEmail({ email, name });
+                return await user.update({
+                    profile_picture,
+                    id_picture,
+                    isActive,
+                    is_Admin
+                })
+            }
+        }
 
-        user.first_name = first_name || user.first_name;
-        user.last_name = last_name || user.last_name;
-        user.date_birth = date_birth || user.date_birth;
-        user.profile_picture = profile_picture || user.profile_picture;
-        user.id_picture = id_picture || user.id_picture;
-        user.email = email || user.email;
-        await user.save();
+        console.log(isActive);
+        if (isActive != undefined) {
+            console.log("entro al if")
+            if (isActive) {
+                await sendUnbanEmail({ email, name });
+
+                return await user.update({
+                    profile_picture,
+                    id_picture,
+                    isActive,
+                    is_Admin
+                })
+
+            } else {
+
+                await sendBannedEmail({ email, name });
+                return await user.update({
+                    profile_picture,
+                    id_picture,
+                    isActive,
+                    is_Admin
+                })
+            }
+        }
+
+        await user.update({
+            profile_picture,
+            id_picture,
+            isActive,
+            is_Admin
+        })
+
         res.status(200).json({ status: 200, message: "Usuario actualizado correctamente" })
 
     } catch (error) {

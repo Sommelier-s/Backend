@@ -49,6 +49,7 @@ const googlelogin = async (req, res) => {
                 token: generarJWT(user.id),
                 profile_picture: user.profile_picture,
                 isAdmin: user.is_Admin,
+                isActive:user.isActive,
             })
         } else {
             return res.status(400).json({ error: "Email inválido" });

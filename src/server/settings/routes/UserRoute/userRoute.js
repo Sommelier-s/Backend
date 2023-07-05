@@ -15,7 +15,7 @@ const getAllUser = require("../../controllers/user/getAllUser.controller");
 const getUserById = require("../../controllers/user/getByIdController");
 const { admin, verifyToken } = require("../../middleware/checkAuth");
 const googlelogin = require("../../controllers/user/googleLogin.controllers");
-
+const sendEmail=require("../../controllers/user/postSendEmail.controller");
 // Router Instance.
 const userRoutes = Router();
 
@@ -25,6 +25,8 @@ userRoutes.post("/register", registroUser);
 userRoutes.post("/login", login);
 // Confirm account after registration
 userRoutes.get("/confirmar/:token", confirmar);
+
+userRoutes.post("/send-email",sendEmail)
 
 // Authenticate with google login
 userRoutes.post("/googlelogin",  googlelogin);
