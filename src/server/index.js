@@ -19,9 +19,7 @@ const desarrolloApp = "http://localhost:3000";
 const produccionApp = "backend-production-22db.up.railway.app"
 
 // Cors.
-app.use(
-  cors({ origin: "*" })
-);
+app.use(cors());
 
 // Router.
 app.use("/", routes);
