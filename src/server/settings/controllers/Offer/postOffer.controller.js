@@ -40,13 +40,13 @@ const postOffer = async (req, res) => {
         if (liquor) {
             productName = liquor.name;
             image = liquor.picture
-            price = liquor.price * finalDiscount
+            price = (liquor.price * finalDiscount).toFixed(2)
             regularPrice = liquor.price
             liquor.update({ price })
         } else {
             productName = wine.name;
             image = wine.picture
-            price = wine.price * finalDiscount;
+            price = (wine.price * finalDiscount).toFixed(2);
             regularPrice = wine.price
             wine.update({ price })
         }
