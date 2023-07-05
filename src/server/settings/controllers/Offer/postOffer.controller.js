@@ -18,16 +18,16 @@ const postOffer = async (req, res) => {
     //User id
     const { id } = req.query;
     const { productId, discount } = req.body;
-    
+
     let productName = "";
     let image = '';
     let price = "";
-    
+
     try {
         if (!validateFields(req.body)) return res.status(409).json({ status: 409, message: 'Invalid fields' });
         if (!esUUID(id)) return res.status(409).json({ status: 409, message: 'Invalid id structure' });
-        
-        if (discount > 99 || discount < 1) return res.status(409).json({ status: 409, message: 'Discount have to be between 1 and 100'})
+
+        if (discount > 99 || discount < 1) return res.status(409).json({ status: 409, message: 'Discount have to be between 1 and 100' })
         const finalDiscount = (100 - discount) / 100;
 
         const user = await User.findByPk(id);
@@ -40,20 +40,26 @@ const postOffer = async (req, res) => {
         if (liquor) {
             productName = liquor.name;
             image = liquor.picture
-            price = liquor.price * finalDiscount;
+            price = liquor.price * finalDiscount
+            regularPrice = liquor.price
+            liquor.update({ price })
         } else {
             productName = wine.name;
             image = wine.picture
             price = wine.price * finalDiscount;
+            regularPrice = wine.price
+            wine.update({ price })
         }
         const response = await Offer.create({
             product_id: productId,
             product_name: productName,
+            regular_price: regularPrice,
             discount,
             price,
             image
         })
         return res.status(201).json({ status: 201, message: 'Offer created', data: response });
+
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message });
     }
