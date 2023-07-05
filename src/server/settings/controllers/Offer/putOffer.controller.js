@@ -37,10 +37,10 @@ const putOffer = async (req, res) => {
 
         if (!liquor && !wine) return res.status(404).json({ status: 404, message: 'Product not found' });
         if (liquor) {
-            price = response.regular_price * finalDiscount;
+            price = (response.regular_price * finalDiscount).toFixed(2);
             liquor.update({ price });
         } else {
-            price = response.regular_price * finalDiscount;
+            price = (response.regular_price * finalDiscount).toFixed(2);
             wine.update({ price });
         }
 
