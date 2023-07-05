@@ -20,11 +20,7 @@ const produccionApp = "backend-production-22db.up.railway.app"
 
 // Cors.
 app.use(
-  cors({
-    origin: produccionApp,
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
+  cors({ origin: "*" })
 );
 
 // Router.
