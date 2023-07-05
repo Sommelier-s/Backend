@@ -25,6 +25,9 @@ const Offer = sequelize.define(
         },
         price: {
             type: DataTypes.FLOAT()
+        },
+        regular_price: {
+            type: DataTypes.FLOAT()
         }
     }
 );

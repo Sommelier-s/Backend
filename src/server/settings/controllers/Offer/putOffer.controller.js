@@ -14,43 +14,45 @@ function validateFields({ discount, offerId }) {
 }
 
 const putOffer = async (req, res) => {
-    
+
     //User id
     const { id } = req.params
-    
+
     let { discount, offerId } = req.body;
-    
+
     let price = "";
     finalDiscount = (100 - discount) / 100;
-    
+
     try {
-        if(!validateFields(req.body)) return res.status(409).json({ status: 409, message: 'Invalid fields'});
-        if(!esUUID(id)) return res.status(409).json({ status: 409, message: 'Ivalid id structure'});
-        
+        if (!validateFields(req.body)) return res.status(409).json({ status: 409, message: 'Invalid fields' });
+        if (!esUUID(id)) return res.status(409).json({ status: 409, message: 'Ivalid id structure' });
+
         const user = await User.findByPk(id);
-        if(!user) return res.status(404).json({ status: 404, message: 'User does exist'});
-        if(!user.is_Admin) return res.status(401).json({ status: 401, messgae: 'Access denied'});
-        
+        if (!user) return res.status(404).json({ status: 404, message: 'User does exist' });
+        if (!user.is_Admin) return res.status(401).json({ status: 401, messgae: 'Access denied' });
+
         const response = await Offer.findByPk(offerId);
         const liquor = await Liquor.findByPk(response.product_id);
         const wine = await Wine.findByPk(response.product_id);
-    
+
         if (!liquor && !wine) return res.status(404).json({ status: 404, message: 'Product not found' });
         if (liquor) {
-            price = liquor.price * finalDiscount;
+            price = response.regular_price * finalDiscount;
+            liquor.update({ price });
         } else {
-            price = wine.price * finalDiscount;
+            price = response.regular_price * finalDiscount;
+            wine.update({ price });
         }
-    
+
         response.update({
-           discount,
-           price 
+            discount,
+            price
         });
 
-        return res.status(200).json({ status: 200, message: 'Offer updated', data: response});
+        return res.status(200).json({ status: 200, message: 'Offer updated', data: response });
 
     } catch (error) {
-        return res.status(500).json({ status: 500, message: error.message});
+        return res.status(500).json({ status: 500, message: error.message });
     }
 }
 
