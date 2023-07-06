@@ -23,6 +23,8 @@ const putWine = async (req, res) => {
     const { id } = req.params;
     const { description, price, stock, picture, id_picture, isActive, is_product_month } = req.body;
 
+    console.log(req.body);
+
     try {
         //Valid if the user id comes from the query
         if (Object.keys(req.query).length === 0) return res.status(400).json({ status: 400, error: "The id field is required" });
@@ -49,6 +51,8 @@ const putWine = async (req, res) => {
             await cloudinary.uploader.destroy(product.id_picture);
         }
 
+        
+
         //I set the product
         product.update({
 
@@ -61,6 +65,7 @@ const putWine = async (req, res) => {
             is_product_month,
         });
 
+        console.log("Producto Actualizado: ", product);
         //I return the product data modified
         res.status(201).json({ status: 201, message: "The product was successfully modified", data: product });
     } catch (error) {
