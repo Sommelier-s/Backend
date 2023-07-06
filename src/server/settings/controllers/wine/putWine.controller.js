@@ -48,10 +48,14 @@ const putWine = async (req, res) => {
         const product = await Wine.findByPk(id);
         if (!product) return res.status(400).json({ status: 400, error: "The product does exist" });
         if (id_picture) {
-            await cloudinary.uploader.destroy(product.id_picture);
+            try {
+                await cloudinary.uploader.destroy(product.id_picture);
+            } catch (error) {
+                console.log("no exite la imagen")
+            }
         }
 
-        
+
 
         //I set the product
         product.update({
