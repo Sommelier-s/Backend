@@ -43,8 +43,11 @@ const PutLiquor = async (req, res) => {
         const product = await Liquor.findByPk(id);
         if (!product) return res.status(400).json({ status: 400, error: "The product does exist" });
         if (id_picture) {
-            
-            await cloudinary.uploader.destroy(product.id_picture);
+            try {
+                await cloudinary.uploader.destroy(product.id_picture);
+            } catch (error) {
+                console.log(error);
+            }
         }
         //I set the product
         product.update({

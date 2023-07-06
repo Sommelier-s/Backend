@@ -28,7 +28,11 @@ const updateUser = async (req, res) => {
         }
 
         if (id_picture && id_picture !== "usersPictures/vjnwieyjnhslptbgtwcs") {
-            await cloudinary.uploader.destroy(user.id_picture);
+            try {
+                await cloudinary.uploader.destroy(user.id_picture);
+            } catch (error) {
+                console.log(error);
+            }
         }
 
         if (is_Admin != undefined) {
@@ -51,7 +55,7 @@ const updateUser = async (req, res) => {
             }
         }
 
-        console.log(isActive);
+
         if (isActive != undefined) {
             console.log("entro al if")
             if (isActive) {
